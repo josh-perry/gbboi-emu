@@ -15,22 +15,18 @@ namespace gbboi_emu
     {
         public Register8[] Registers;
 
-        public byte[] Value
+        public ushort Value
         {
             get
             {
-                return new[] { Registers[0].Value, Registers[1].Value };
+                return (ushort) ((Registers[0].Value << 8) | Registers[1].Value);
             }
             set
             {
-                if (value.Length != 2)
-                    throw new Exception("Expected 2 bytes!");
-
-                Registers[0].Value = value[0];
-                Registers[1].Value = value[1];
+                Registers[0].Value = (byte) (value >> 8);
+                Registers[1].Value = (byte) (value & 0x00FF);
             }
         }
-
         public Register16(Register8 register, Register8 register2)
         {
             Registers = new[] {register, register2};

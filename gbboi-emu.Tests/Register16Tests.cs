@@ -15,8 +15,7 @@ namespace gbboi_emu.Tests
             // Act
 
             // Assert
-            Assert.That(register16.Value[0] == 0x00);
-            Assert.That(register16.Value[1] == 0x00);
+            Assert.That(register16.Value == 0x0000);
         }
         
         [Test]
@@ -28,14 +27,13 @@ namespace gbboi_emu.Tests
             var register16 = new Register16(firstRegister8, secondRegister8);
 
             // Act
-            register16.Value = new byte[] { 0x01, 0x02 };
+            register16.Value = 0x1122;
 
             // Assert
-            Assert.That(register16.Value[0] == 0x01);
-            Assert.That(register16.Value[1] == 0x02);
+            Assert.That(register16.Value == 0x1122);
 
-            Assert.That(firstRegister8.Value == 0x01);
-            Assert.That(secondRegister8.Value == 0x02);
+            Assert.That(firstRegister8.Value == 0x11);
+            Assert.That(secondRegister8.Value == 0x22);
         }
 
         [Test]
@@ -50,8 +48,7 @@ namespace gbboi_emu.Tests
             firstRegister8.Value = 0xAA;
 
             // Assert
-            Assert.That(register16.Value[0] == 0xAA);
-            Assert.That(register16.Value[1] == 0x00);
+            Assert.That(register16.Value == 0xAA00);
 
             Assert.That(firstRegister8.Value == 0xAA);
             Assert.That(secondRegister8.Value == 0x00);
@@ -70,8 +67,7 @@ namespace gbboi_emu.Tests
             secondRegister8.Value = 0xBB;
 
             // Assert
-            Assert.That(register16.Value[0] == 0xAA);
-            Assert.That(register16.Value[1] == 0xBB);
+            Assert.That(register16.Value == 0xAABB);
 
             Assert.That(firstRegister8.Value == 0xAA);
             Assert.That(secondRegister8.Value == 0xBB);
