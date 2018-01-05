@@ -44,6 +44,12 @@ namespace gbboi_emu
             FetchInstruction();
             DecodeInstruction();
             ExecuteInstruction();
+            IncrementProgramCounter();
+        }
+        
+        private void IncrementProgramCounter()
+        {
+            Registers.PC.Value += 2;
         }
 
         /// <summary>

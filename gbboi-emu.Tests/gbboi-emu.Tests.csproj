@@ -43,6 +43,7 @@
     <Compile Include="OpCodes\0x00.cs" />
     <Compile Include="MemoryInit.cs" />
     <Compile Include="OpCodes\0x31.cs" />
+    <Compile Include="ProgramCounter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Register16Tests.cs" />
     <Compile Include="Register8Tests.cs" />
