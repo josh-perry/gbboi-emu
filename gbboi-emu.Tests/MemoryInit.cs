@@ -4,6 +4,7 @@ using NUnit.Framework;
 namespace gbboi_emu.Tests
 {
     [TestFixture]
+    [Category("Memory")]
     public class MemoryInit
     {
         [Test]
