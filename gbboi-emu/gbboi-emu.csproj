@@ -49,6 +49,8 @@
     <Compile Include="Instruction.cs" />
     <Compile Include="IRegister.cs" />
     <Compile Include="Memory.cs" />
+    <Compile Include="NoCartridgeInsertedException.cs" />
+    <Compile Include="OpCodeNotSupportedException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Registers.cs" />
   </ItemGroup>

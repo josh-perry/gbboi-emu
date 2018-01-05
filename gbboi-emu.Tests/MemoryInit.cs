@@ -13,7 +13,7 @@ namespace gbboi_emu.Tests
             // Arrange
             var memory = new Memory();
             var cpu = new Cpu(memory, new Registers());
-            var gameboy = new GameBoy(cpu, memory);
+            var gameboy = new GameBoy(cpu, memory, new MockCartridge());
 
             // Act
             gameboy.Memory.Init(0xFFFF);
@@ -29,7 +29,7 @@ namespace gbboi_emu.Tests
             // Arrange
             var memory = new Memory();
             var cpu = new Cpu(memory, new Registers());
-            var gameboy = new GameBoy(cpu, memory);
+            var gameboy = new GameBoy(cpu, memory, new MockCartridge());
 
             // Act
             gameboy.Memory.Init(0xFFFF);

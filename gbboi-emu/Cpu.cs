@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace gbboi_emu
+﻿namespace gbboi_emu
 {
     public class Cpu : ICpu
     {
@@ -22,10 +20,6 @@ namespace gbboi_emu
             CurrentInstruction = new Instruction(op);
         }
 
-        public void DecodeInstruction()
-        {
-        }
-
         public void ExecuteInstruction()
         {
             switch (CurrentInstruction.Opcode & 0xFF00)
@@ -37,15 +31,14 @@ namespace gbboi_emu
                     _0x31();
                     break;
 
-                case 0xFF00:
-                    break;
+                default:
+                    throw new OpCodeNotSupportedException();
             }
         }
 
         public void Cycle()
         {
             FetchInstruction();
-            DecodeInstruction();
             ExecuteInstruction();
             IncrementProgramCounter();
         }

@@ -1,4 +1,6 @@
-﻿namespace gbboi_emu
+﻿using System;
+
+namespace gbboi_emu
 {
     public class GameBoy
     {
@@ -14,12 +16,28 @@
             Memory = memory;
         }
 
+        public GameBoy(ICpu cpu, IMemory memory, ICartridge cartridge) : this(cpu, memory)
+        {
+            Cartridge = cartridge;
+        }
+
         public void PowerUp()
         {
             InitializeMemory();
             InitializeRegisters();
-
+            InitializeCartridge();
+            
             Cpu.Registers.PC.Value = 0x0100;
+        }
+
+        private void InitializeCartridge()
+        {
+            if (Cartridge == null)
+            {
+                throw new NoCartridgeInsertedException();
+            }
+            
+            Cartridge.Bytes.CopyTo(Memory.Bytes, 0);
         }
 
         public void InitializeRegisters()

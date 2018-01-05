@@ -10,8 +10,6 @@
 
         void FetchInstruction();
 
-        void DecodeInstruction();
-
         void ExecuteInstruction();
 
         void Cycle();

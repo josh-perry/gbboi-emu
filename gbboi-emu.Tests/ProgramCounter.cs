@@ -12,7 +12,7 @@ namespace gbboi_emu.Tests
             // Arrange
             var memory = new Memory();
             var cpu = new Cpu(memory, new Registers());
-            var gameboy = new GameBoy(cpu, memory);
+            var gameboy = new GameBoy(cpu, memory, new MockCartridge());
             gameboy.Memory.Init(0xFFFF);
 
             gameboy.Cpu.Registers.PC.Value = 0x0000;

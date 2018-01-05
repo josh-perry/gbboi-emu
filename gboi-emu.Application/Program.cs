@@ -6,11 +6,19 @@ namespace gboi_emu.Application
     {
         static void Main(string[] args)
         {
+            var cart = new Cartridge();
+            cart.LoadFromFile(@"E:\Media\Games\Emulation\Gameboy\ROMs\TETRIS.gb");
+
             var memory = new Memory();
             var cpu = new Cpu(memory, new Registers());
-            var gameboy = new GameBoy(cpu, memory);
+            var gameboy = new GameBoy(cpu, memory, cart);
 
             gameboy.PowerUp();
+
+            while (true)
+            {
+                gameboy.Cpu.Cycle();
+            }
         }
     }
 }
