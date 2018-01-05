@@ -15,6 +15,7 @@ namespace gbboi_emu.Tests.OpCodes
             var gameboy = new GameBoy(cpu, memory);
 
             gameboy.Memory.Init(0xFFFF);
+            gameboy.Cpu.Registers.PC.Value = 0x00;
             gameboy.Memory.Bytes[0x00] = 0x31;
             gameboy.Memory.Bytes[0x01] = 0xFE;
 
@@ -34,6 +35,7 @@ namespace gbboi_emu.Tests.OpCodes
             var gameboy = new GameBoy(cpu, memory);
 
             gameboy.Memory.Init(0xFFFF);
+            gameboy.Cpu.Registers.PC.Value = 0x00;
             gameboy.Memory.Bytes[0x00] = 0x31;
             gameboy.Memory.Bytes[0x01] = 0x11;
 

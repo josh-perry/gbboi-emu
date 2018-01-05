@@ -14,7 +14,6 @@ namespace gbboi_emu.Tests.OpCodes
             var cpu = new Cpu(memory, new Registers());
             var gameboy = new GameBoy(cpu, memory);
 
-            gameboy.Memory.Init(0xFFFF);
             gameboy.Memory.Bytes[0x00] = 0x00;
 
             // Act
