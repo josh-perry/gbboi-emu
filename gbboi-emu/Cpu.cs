@@ -25,10 +25,11 @@
             switch (CurrentInstruction.Opcode & 0xFF00)
             {
                 case 0x0000:
+                    Opcodes._0x00();
                     break;
 
                 case 0x3100:
-                    _0x31();
+                    Opcodes._0x31(Registers, CurrentInstruction);
                     break;
 
                 default:
@@ -46,15 +47,6 @@
         private void IncrementProgramCounter()
         {
             Registers.PC.Value += 2;
-        }
-
-        /// <summary>
-        /// Load 16-bit immediate into SP
-        /// LD SP,nn
-        /// </summary>
-        private void _0x31()
-        {
-            Registers.SP.Value = CurrentInstruction.NN;
         }
     }
 }
