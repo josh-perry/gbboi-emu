@@ -3,6 +3,7 @@
     public static partial class Opcodes
     {
         /// <summary>
+        /// LD SP,nn
         /// Load 16-bit immediate into SP
         /// </summary>
         /// <param name="r"></param>
