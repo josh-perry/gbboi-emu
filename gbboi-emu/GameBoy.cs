@@ -2,8 +2,6 @@
 {
     public class GameBoy
     {
-        public Registers Registers; 
-     
         public ICpu Cpu;
 
         public IMemory Memory;

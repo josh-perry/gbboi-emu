@@ -4,6 +4,10 @@
     {
         IMemory Memory { get; set; }
 
+        Instruction CurrentInstruction { get; set; }
+
+        Registers Registers { get; set; }
+
         void FetchInstruction();
 
         void DecodeInstruction();

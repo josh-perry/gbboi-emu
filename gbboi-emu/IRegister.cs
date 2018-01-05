@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace gbboi_emu
+﻿namespace gbboi_emu
 {
     public interface IRegister
     {

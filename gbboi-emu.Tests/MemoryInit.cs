@@ -12,7 +12,7 @@ namespace gbboi_emu.Tests
         {
             // Arrange
             var memory = new Memory();
-            var cpu = new Cpu(memory);
+            var cpu = new Cpu(memory, new Registers());
             var gameboy = new GameBoy(cpu, memory);
 
             // Act
@@ -28,7 +28,7 @@ namespace gbboi_emu.Tests
         {
             // Arrange
             var memory = new Memory();
-            var cpu = new Cpu(memory);
+            var cpu = new Cpu(memory, new Registers());
             var gameboy = new GameBoy(cpu, memory);
 
             // Act
