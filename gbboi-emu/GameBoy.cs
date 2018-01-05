@@ -6,14 +6,10 @@
 
         public IMemory Memory;
 
-        public bool PoweredUp;
-
         public GameBoy(ICpu cpu, IMemory memory)
         {
             Cpu = cpu;
             Memory = memory;
-
-            PowerUp();
         }
 
         public void PowerUp()

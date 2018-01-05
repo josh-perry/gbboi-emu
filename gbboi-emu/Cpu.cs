@@ -36,6 +36,9 @@ namespace gbboi_emu
                 case 0x3100:
                     _0x31();
                     break;
+
+                case 0xFF00:
+                    break;
             }
         }
 
