@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace gbboi_emu
+﻿namespace gbboi_emu
 {
     public interface IMemory
     {
@@ -9,5 +7,7 @@ namespace gbboi_emu
         void Init(int length);
 
         byte GetByte(int index);
+
+        void LoadMemoryBankFromFile(string filepath, int index);
     }
 }

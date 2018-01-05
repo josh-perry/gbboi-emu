@@ -2,6 +2,8 @@
 {
     public interface ICpu
     {
+        IMemory Memory { get; set; }
+
         void FetchInstruction();
 
         void DecodeInstruction();

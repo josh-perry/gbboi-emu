@@ -44,6 +44,8 @@
     <Compile Include="GameBoy.cs" />
     <Compile Include="ICpu.cs" />
     <Compile Include="IMemory.cs" />
+    <Compile Include="Instruction.cs" />
+    <Compile Include="IRegister.cs" />
     <Compile Include="Memory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

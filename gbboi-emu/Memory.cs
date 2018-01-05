@@ -1,4 +1,7 @@
-﻿namespace gbboi_emu
+﻿using System;
+using System.IO;
+
+namespace gbboi_emu
 {
     /// <summary>
     /// A generic bank of memory.
@@ -26,6 +29,18 @@
         public byte GetByte(int index)
         {
             return Bytes[index];
+        }
+
+        /// <summary>
+        /// Copies data from a file into memory at index
+        /// </summary>
+        /// <param name="filepath">The path to load data from</param>
+        /// <param name="index">The index to insert this data into in memory</param>
+        public void LoadMemoryBankFromFile(string filepath, int index)
+        {
+            var data = File.ReadAllBytes(filepath);
+
+            data.CopyTo(Bytes, index);
         }
     }
 }

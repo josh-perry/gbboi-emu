@@ -39,6 +39,8 @@
   <ItemGroup>
     <Compile Include="MemoryInit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Register16Tests.cs" />
+    <Compile Include="Register8Tests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

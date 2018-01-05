@@ -2,6 +2,13 @@
 {
     public class Cpu : ICpu
     {
+        public IMemory Memory { get; set; }
+
+        public Cpu(IMemory memory)
+        {
+            Memory = memory;
+        }
+
         public void FetchInstruction()
         {
         }
