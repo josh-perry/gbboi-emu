@@ -3,6 +3,7 @@
 namespace gbboi_emu.Tests
 {
     [TestFixture]
+    [Category("Registers")]
     public class Register16Tests
     {
         [Test]
@@ -17,8 +18,7 @@ namespace gbboi_emu.Tests
             Assert.That(register16.Value[0] == 0x00);
             Assert.That(register16.Value[1] == 0x00);
         }
-
-
+        
         [Test]
         public void SettingRegister16Value()
         {

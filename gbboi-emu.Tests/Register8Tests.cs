@@ -3,6 +3,7 @@
 namespace gbboi_emu.Tests
 {
     [TestFixture]
+    [Category("Registers")]
     public class Register8Tests
     {
         [Test]
