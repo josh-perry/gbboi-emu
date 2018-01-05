@@ -30,4 +30,63 @@
             Registers = new[] {register, register2};
         }
     }
+
+    public class FlagRegister8 : Register8
+    {
+        private enum FlagBits
+        {
+            Zero = 7,
+            Subtract = 6,
+            HalfCarry = 5,
+            Carry = 4
+        }
+
+        public bool CarryFlag
+        {
+            get
+            {
+                return ((Value >> (int)FlagBits.Carry) & 1) != 0;
+            }
+            set
+            {
+                Value |= 1 << (int)FlagBits.Carry;
+            }
+        }
+
+        public bool ZeroFlag
+        {
+            get
+            {
+                return ((Value >> (int)FlagBits.Zero) & 1) != 0;
+            }
+            set
+            {
+                Value |= 1 << (int)FlagBits.Zero;
+            }
+        }
+
+        public bool SubtractFlag
+        {
+            get
+            {
+                return ((Value >> (int)FlagBits.Subtract) & 1) != 0;
+            }
+            set
+            {
+                Value |= 1 << (int)FlagBits.Subtract;
+            }
+        }
+
+        public bool HalfCarryFlag
+        {
+            get
+            {
+                return ((Value >> (int)FlagBits.HalfCarry) & 1) != 0;
+            }
+            set
+            {
+                Value |= 1 << (int)FlagBits.HalfCarry;
+            }
+        }
+    }
 }

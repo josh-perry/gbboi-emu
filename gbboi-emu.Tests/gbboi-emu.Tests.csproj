@@ -45,6 +45,7 @@
     <Compile Include="MemoryInit.cs" />
     <Compile Include="OpCodes\0x31.cs" />
     <Compile Include="OpCodes\0x50.cs" />
+    <Compile Include="OpCodes\0xCE.cs" />
     <Compile Include="ProgramCounter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Register16Tests.cs" />

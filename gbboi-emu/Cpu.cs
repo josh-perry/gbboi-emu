@@ -36,6 +36,10 @@
                     Opcodes._0x50(Registers);
                     break;
 
+                case 0xCE00:
+                    Opcodes._0xCE(Registers, CurrentInstruction);
+                    break;
+
                 default:
                     throw new OpCodeNotSupportedException();
             }

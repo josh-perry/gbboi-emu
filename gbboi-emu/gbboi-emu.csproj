@@ -54,6 +54,7 @@
     <Compile Include="Opcodes\0x0.cs" />
     <Compile Include="Opcodes\0x3.cs" />
     <Compile Include="Opcodes\0x50.cs" />
+    <Compile Include="Opcodes\0xCE.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Registers.cs" />
   </ItemGroup>

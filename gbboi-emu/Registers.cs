@@ -6,8 +6,9 @@
 
     public class Registers : IRegisters
     {
+        public FlagRegister8 F;
+
         public Register8 A;
-        public Register8 F;
         public Register8 B;
         public Register8 C;
         public Register8 D;
@@ -34,7 +35,7 @@
         {
             // 8-bit registers
             A = new Register8();
-            F = new Register8();
+            F = new FlagRegister8();
             B = new Register8();
             C = new Register8();
             D = new Register8();
