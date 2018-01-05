@@ -40,8 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cartridge.cs" />
     <Compile Include="Cpu.cs" />
     <Compile Include="GameBoy.cs" />
+    <Compile Include="ICartridge.cs" />
     <Compile Include="ICpu.cs" />
     <Compile Include="IMemory.cs" />
     <Compile Include="Instruction.cs" />

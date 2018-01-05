@@ -6,6 +6,8 @@
 
         public IMemory Memory;
 
+        public ICartridge Cartridge;
+
         public GameBoy(ICpu cpu, IMemory memory)
         {
             Cpu = cpu;
