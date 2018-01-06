@@ -40,6 +40,10 @@
                     Opcodes._0xCE(Registers, CurrentInstruction);
                     break;
 
+                case 0x6600:
+                    Opcodes._0x66(Registers, Memory);
+                    break;
+
                 default:
                     throw new OpCodeNotSupportedException();
             }
