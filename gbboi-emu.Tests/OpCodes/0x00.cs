@@ -17,6 +17,7 @@ namespace gbboi_emu.Tests.OpCodes
 
             gameboy.Cpu.Registers.PC.Value = 0x00;
             gameboy.Memory.Bytes[0x00] = 0x00;
+            gameboy.Memory.Bytes[0x01] = 0x00;
 
             // Act
             gameboy.Cpu.Cycle();
