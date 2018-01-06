@@ -8,10 +8,13 @@
 
         public Instruction CurrentInstruction { get; set; }
 
+        public Opcodes Opcodes { get; set; }
+        
         public Cpu(IMemory memory, Registers registers)
         {
             Memory = memory;
             Registers = registers;
+            Opcodes = new Opcodes();
         }
 
         public void FetchInstruction()

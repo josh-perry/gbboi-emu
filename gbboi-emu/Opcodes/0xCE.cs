@@ -1,6 +1,6 @@
 ﻿namespace gbboi_emu
 {
-    public static partial class Opcodes
+    public partial class Opcodes
     {
         /// <summary>
         /// ADC A,n
@@ -8,7 +8,7 @@
         /// </summary>
         /// <param name="registers"></param>
         /// <param name="instruction"></param>
-        public static void _0xCE(Registers registers, Instruction instruction)
+        public void _0xCE(Registers registers, Instruction instruction)
         {
             if((registers.A.Value >> 4) > (0xFF - (instruction.N) >> 8))
             {
