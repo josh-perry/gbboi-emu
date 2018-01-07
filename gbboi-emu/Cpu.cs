@@ -1,4 +1,6 @@
-﻿namespace gbboi_emu
+﻿using System.Collections.Generic;
+
+namespace gbboi_emu
 {
     public class Cpu : ICpu
     {
@@ -45,6 +47,10 @@
 
                 case 0x6600:
                     Opcodes._0x66(Registers, Memory);
+                    break;
+
+                case 0xCC00:
+                    Opcodes._0xCC(Registers, CurrentInstruction, Memory);
                     break;
 
                 default:
