@@ -11,12 +11,15 @@ namespace gbboi_emu
         public Instruction CurrentInstruction { get; set; }
 
         public Opcodes Opcodes { get; set; }
+
+        public Stack Stack { get; set; }
         
         public Cpu(IMemory memory, Registers registers)
         {
             Memory = memory;
             Registers = registers;
             Opcodes = new Opcodes();
+            Stack = new Stack();
         }
 
         public void FetchInstruction()
@@ -50,7 +53,11 @@ namespace gbboi_emu
                     break;
 
                 case 0xCC00:
-                    Opcodes._0xCC(Registers, CurrentInstruction, Memory);
+                    Opcodes._0xCC(Stack, Registers, CurrentInstruction, Memory);
+                    break;
+
+                case 0xFF00:
+                    Opcodes._0xFF(Stack, Registers, Memory);
                     break;
 
                 default:

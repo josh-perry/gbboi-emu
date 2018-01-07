@@ -36,6 +36,9 @@ namespace gbboi_emu.Tests.OpCodes
 
             // Stack pointer should have decremented
             Assert.That(gameboy.Cpu.Registers.SP.Value == originalSP - 2);
+
+            // PC should be NN
+            Assert.That(gameboy.Cpu.Registers.PC.Value == 0x55);
         }
 
         [Test]

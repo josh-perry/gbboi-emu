@@ -57,8 +57,10 @@
     <Compile Include="Opcodes\0x66.cs" />
     <Compile Include="Opcodes\0xCC.cs" />
     <Compile Include="Opcodes\0xCE.cs" />
+    <Compile Include="Opcodes\0xFF.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Registers.cs" />
+    <Compile Include="Stack.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
