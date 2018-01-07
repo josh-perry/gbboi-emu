@@ -36,6 +36,10 @@ namespace gbboi_emu
                     Opcodes._0x00();
                     break;
 
+                case 0x0100:
+                    Opcodes._0x01(Registers, CurrentInstruction);
+                    break;
+
                 case 0x3100:
                     Opcodes._0x31(Registers, CurrentInstruction);
                     break;

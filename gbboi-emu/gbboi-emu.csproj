@@ -52,6 +52,7 @@
     <Compile Include="NoCartridgeInsertedException.cs" />
     <Compile Include="OpCodeNotSupportedException.cs" />
     <Compile Include="Opcodes\0x0.cs" />
+    <Compile Include="Opcodes\0x01.cs" />
     <Compile Include="Opcodes\0x3.cs" />
     <Compile Include="Opcodes\0x50.cs" />
     <Compile Include="Opcodes\0x66.cs" />
