@@ -54,7 +54,7 @@ namespace gbboi_emu
                     break;
 
                 default:
-                    throw new OpCodeNotSupportedException();
+                    throw new OpCodeNotSupportedException($"Opcode 0x{CurrentInstruction.Opcode.ToString("X4")} not supported!");
             }
         }
 
