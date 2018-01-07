@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace gbboi_emu
 {
@@ -30,6 +31,10 @@ namespace gbboi_emu
 
         public void ExecuteInstruction()
         {
+            var pc = Registers.PC.Value.ToString("x8");
+            var op = "0x" + CurrentInstruction.Opcode.ToString("x4");
+            Console.WriteLine($"{pc} {op}");
+
             switch (CurrentInstruction.Opcode & 0xFF00)
             {
                 case 0x0000:
