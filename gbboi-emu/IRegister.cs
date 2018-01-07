@@ -49,7 +49,13 @@
             }
             set
             {
-                Value |= 1 << (int)FlagBits.Carry;
+                if (value)
+                {
+                    Value |= 1 << (int)FlagBits.Carry;
+                    return;
+                }
+
+                Value = (byte)(Value & ~(1 << (int)FlagBits.Carry));
             }
         }
 
@@ -61,7 +67,13 @@
             }
             set
             {
-                Value |= 1 << (int)FlagBits.Zero;
+                if (value)
+                {
+                    Value |= 1 << (int)FlagBits.Zero;
+                    return;
+                }
+
+                Value = (byte)(Value & ~(1 << (int)FlagBits.Zero));
             }
         }
 
@@ -73,7 +85,13 @@
             }
             set
             {
-                Value |= 1 << (int)FlagBits.Subtract;
+                if (value)
+                {
+                    Value |= 1 << (int)FlagBits.Subtract;
+                    return;
+                }
+
+                Value = (byte)(Value & ~(1 << (int)FlagBits.Subtract));
             }
         }
 
@@ -85,7 +103,13 @@
             }
             set
             {
-                Value |= 1 << (int)FlagBits.HalfCarry;
+                if (value)
+                {
+                    Value |= 1 << (int)FlagBits.HalfCarry;
+                    return;
+                }
+
+                Value = (byte)(Value & ~(1 << (int)FlagBits.HalfCarry));
             }
         }
     }
