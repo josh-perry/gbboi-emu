@@ -56,6 +56,7 @@
     <Compile Include="Opcodes\0x3.cs" />
     <Compile Include="Opcodes\0x50.cs" />
     <Compile Include="Opcodes\0x66.cs" />
+    <Compile Include="Opcodes\0xC3.cs" />
     <Compile Include="Opcodes\0xCC.cs" />
     <Compile Include="Opcodes\0xCE.cs" />
     <Compile Include="Opcodes\0xFF.cs" />
