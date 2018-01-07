@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gbboi-emu", "gbboi-emu\gbbo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gbboi-emu.Tests", "gbboi-emu.Tests\gbboi-emu.Tests.csproj", "{067456C0-086C-46A8-B37F-1405717B7BFC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gboi-emu.Application", "gboi-emu.Application\gboi-emu.Application.csproj", "{7983BB0E-1833-4666-AAC4-DACCAD6290AE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gbboi-emu.Application", "gboi-emu.Application\gbboi-emu.Application.csproj", "{7983BB0E-1833-4666-AAC4-DACCAD6290AE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
