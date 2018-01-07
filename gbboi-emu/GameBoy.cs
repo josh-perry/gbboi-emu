@@ -42,7 +42,7 @@ namespace gbboi_emu
 
         public void InitializeRegisters()
         {
-            //Cpu.Registers.AF.Value = 0x01B0;
+            Cpu.Registers.AF.Value = 0x01B0;
             Cpu.Registers.BC.Value = 0x0013;
             Cpu.Registers.DE.Value = 0x00D8;
             Cpu.Registers.HL.Value = 0x014D;

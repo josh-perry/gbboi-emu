@@ -10,7 +10,9 @@
         /// <param name="instruction"></param>
         public void _0xCE(Registers registers, Instruction instruction)
         {
-            if((registers.A.Value >> 4) > (0xFF - (instruction.N) >> 8))
+            registers.F.CarryFlag = false;
+
+            if ((registers.A.Value >> 4) > (0xFF - (instruction.N) >> 8))
             {
                 registers.F.CarryFlag = true;
             }
