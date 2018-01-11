@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using gbboi_emu.Exceptions;
 
 namespace gbboi_emu
 {
@@ -72,6 +73,20 @@ namespace gbboi_emu
                 case 0xFF00:
                     Opcodes._0xFF(Stack, Registers, Memory);
                     break;
+
+                case 0xD300:
+                case 0xDB00:
+                case 0xDD00:
+                case 0xE300:
+                case 0xE400:
+                case 0xEB00:
+                case 0xEC00:
+                case 0xED00:
+                case 0xF200:
+                case 0xF400:
+                case 0xFC00:
+                case 0xFD00:
+                    throw new OperationNotSupportedByCpuException(CurrentInstruction.Opcode);
 
                 default:
                     throw new OpCodeNotSupportedException($"Opcode 0x{CurrentInstruction.Opcode.ToString("X4")} not supported!");

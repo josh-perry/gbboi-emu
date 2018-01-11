@@ -1,4 +1,4 @@
-﻿using System;
+﻿using gbboi_emu.Exceptions;
 
 namespace gbboi_emu
 {
