@@ -7,7 +7,7 @@ namespace gboi_emu.Application
         static void Main(string[] args)
         {
             var cart = new Cartridge();
-            cart.LoadFromFile(@"E:\Media\Games\Emulation\Gameboy\ROMs\TETRIS.gb");
+            cart.LoadFromFile(@"TestData/BIOS.gb");
 
             var memory = new Memory();
             var cpu = new Cpu(memory, new Registers());
