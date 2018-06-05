@@ -10,14 +10,15 @@
         /// <param name="instruction"></param>
         public void _0xCE(Registers registers, Instruction instruction)
         {
-            registers.F.CarryFlag = false;
-
-            if ((registers.A.Value >> 4) > (0xFF - (instruction.N) >> 8))
-            {
-                registers.F.CarryFlag = true;
-            }
+            var originalValue = registers.A.Value;
 
             registers.A.Value = (byte) (registers.A.Value + instruction.N);
+
+            // Flags
+            registers.F.SubtractFlag = false;
+            registers.F.CarryFlag = originalValue + instruction.N > byte.MaxValue;
+            registers.F.ZeroFlag = registers.A.Value == 0;
+            registers.F.HalfCarryFlag = (((originalValue & 0xF) + (instruction.N & 0xF)) & 0x10) == 0x10;
         }
     }
 }
