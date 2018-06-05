@@ -6,9 +6,10 @@
         /// NOP
         /// No operation
         /// </summary>
-        public void _0x00()
+        /// <param name="registers"></param>
+        public void _0x00(Registers registers)
         {
-            
+            registers.PC.Value += 1;
         }
     }
 }

@@ -39,7 +39,7 @@ namespace gbboi_emu
             switch (CurrentInstruction.Opcode & 0xFF00)
             {
                 case 0x0000:
-                    Opcodes._0x00();
+                    Opcodes._0x00(Registers);
                     break;
 
                 case 0x0100:
@@ -102,7 +102,7 @@ namespace gbboi_emu
         
         private void IncrementProgramCounter()
         {
-            Registers.PC.Value += 2;
+            //Registers.PC.Value += 2;
         }
     }
 }

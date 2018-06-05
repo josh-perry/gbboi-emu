@@ -19,6 +19,8 @@
             registers.F.CarryFlag = originalValue + instruction.N > byte.MaxValue;
             registers.F.ZeroFlag = registers.A.Value == 0;
             registers.F.HalfCarryFlag = (((originalValue & 0xF) + (instruction.N & 0xF)) & 0x10) == 0x10;
+
+            registers.PC.Value += 2;
         }
     }
 }

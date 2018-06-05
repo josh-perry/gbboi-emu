@@ -10,6 +10,8 @@
         public void _0x66(Registers registers, IMemory memory)
         {
             registers.H.Value = memory.Bytes[registers.HL.Value];
+
+            registers.PC.Value += 1;
         }
     }
 }

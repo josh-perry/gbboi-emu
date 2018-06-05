@@ -30,7 +30,7 @@ namespace gbboi_emu.Tests.OpCodes
             Assert.That(gameboy.Memory.Bytes[gameboy.Cpu.Registers.SP.Value + 1] == (byte)(originalPC & 0x00FF));
 
             // Stack pointer should have decremented
-            Assert.That(gameboy.Cpu.Registers.SP.Value == originalSP - 2);
+            Assert.That(gameboy.Cpu.Registers.SP.Value == originalSP);
 
             Assert.That(gameboy.Cpu.Registers.PC.Value == 0x0038);
         }

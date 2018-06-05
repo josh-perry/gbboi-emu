@@ -9,6 +9,7 @@
         public void _0x01(Registers registers, Instruction currentInstruction)
         {
             registers.BC.Value = currentInstruction.NN;
+            registers.PC.Value += 3;
         }
     }
 }

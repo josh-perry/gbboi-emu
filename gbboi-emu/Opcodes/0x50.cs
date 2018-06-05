@@ -10,6 +10,7 @@
         public void _0x50(Registers registers)
         {
             registers.D.Value = registers.B.Value;
+            registers.PC.Value += 1;
         }
     }
 }

@@ -19,13 +19,13 @@ namespace gbboi_emu.Tests
 
             // Act + assert
             gameboy.Cpu.Cycle();
+            Assert.That(gameboy.Cpu.Registers.PC.Value == 0x0001);
+
+            gameboy.Cpu.Cycle();
             Assert.That(gameboy.Cpu.Registers.PC.Value == 0x0002);
 
             gameboy.Cpu.Cycle();
-            Assert.That(gameboy.Cpu.Registers.PC.Value == 0x0004);
-
-            gameboy.Cpu.Cycle();
-            Assert.That(gameboy.Cpu.Registers.PC.Value == 0x0006);
+            Assert.That(gameboy.Cpu.Registers.PC.Value == 0x0003);
         }
     }
 }

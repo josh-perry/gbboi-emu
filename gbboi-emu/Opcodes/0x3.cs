@@ -11,6 +11,7 @@
         public void _0x31(Registers registers, Instruction instruction)
         {
             registers.SP.Value = instruction.NN;
+            registers.PC.Value += 3;
         }
     }
 }

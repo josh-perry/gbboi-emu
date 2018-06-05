@@ -14,6 +14,7 @@
             // Only call the routine if the zero flag is set
             if (!registers.F.ZeroFlag)
             {
+                registers.PC.Value += 3;
                 return;
             }
 
