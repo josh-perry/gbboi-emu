@@ -8,7 +8,7 @@
         /// </summary>
         /// <param name="registers"></param>
         /// <param name="instruction"></param>
-        public void _0xCE(Registers registers, Instruction instruction)
+        public void _0xCE(Stack stack, Registers registers, Instruction instruction, IMemory memory)
         {
             var originalValue = registers.A.Value;
 

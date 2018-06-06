@@ -7,7 +7,7 @@
         /// Save A to address pointed by HL, and decrement HL
         /// </summary>
         /// <param name="registers"></param>
-        public void _0x32(Registers registers, IMemory memory)
+        public void _0x32(Stack stack, Registers registers, Instruction instruction, IMemory memory)
         {
             memory.Bytes[registers.HL.Value] = registers.A.Value;
             registers.HL.Value--;

@@ -39,43 +39,43 @@ namespace gbboi_emu
             switch (CurrentInstruction.Opcode & 0xFF00)
             {
                 case 0x0000:
-                    Opcodes._0x00(Registers);
+                    Opcodes._0x00(Stack, Registers, CurrentInstruction, Memory);
                     break;
 
                 case 0x0100:
-                    Opcodes._0x01(Registers, CurrentInstruction);
+                    Opcodes._0x01(Stack, Registers, CurrentInstruction, Memory);
                     break;
 
                 case 0x2100:
-                    Opcodes._0x21(Registers, CurrentInstruction);
+                    Opcodes._0x21(Stack, Registers, CurrentInstruction, Memory);
                     break;
 
                 case 0x3100:
-                    Opcodes._0x31(Registers, CurrentInstruction);
+                    Opcodes._0x31(Stack, Registers, CurrentInstruction, Memory);
                     break;
 
                 case 0x3200:
-                    Opcodes._0x32(Registers, Memory);
+                    Opcodes._0x32(Stack, Registers, CurrentInstruction, Memory);
                     break;
 
                 case 0x5000:
-                    Opcodes._0x50(Registers);
+                    Opcodes._0x50(Stack, Registers, CurrentInstruction, Memory);
                     break;
 
                 case 0xCE00:
-                    Opcodes._0xCE(Registers, CurrentInstruction);
+                    Opcodes._0xCE(Stack, Registers, CurrentInstruction, Memory);
                     break;
 
                 case 0x6600:
-                    Opcodes._0x66(Registers, Memory);
+                    Opcodes._0x66(Stack, Registers, CurrentInstruction, Memory);
                     break;
 
                 case 0xAF00:
-                    Opcodes._0xAF(Registers);
+                    Opcodes._0xAF(Stack, Registers, CurrentInstruction, Memory);
                     break;
 
                 case 0xC300:
-                    Opcodes._0xC3(Registers, CurrentInstruction);
+                    Opcodes._0xC3(Stack, Registers, CurrentInstruction, Memory);
                     break;
 
                 case 0xCC00:
@@ -83,7 +83,7 @@ namespace gbboi_emu
                     break;
 
                 case 0xFF00:
-                    Opcodes._0xFF(Stack, Registers, Memory);
+                    Opcodes._0xFF(Stack, Registers, CurrentInstruction, Memory);
                     break;
 
                 case 0xD300:

@@ -1,4 +1,6 @@
-﻿namespace gbboi_emu
+﻿using System;
+
+namespace gbboi_emu
 {
     public partial class Opcodes
     {
@@ -7,7 +9,7 @@
         /// No operation
         /// </summary>
         /// <param name="registers"></param>
-        public void _0x00(Registers registers)
+        public void _0x00(Stack stack, Registers registers, Instruction instruction, IMemory memory)
         {
             registers.PC.Value += 1;
         }

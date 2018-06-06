@@ -8,7 +8,7 @@
         /// </summary>
         /// <param name="r"></param>
         /// <param name="i"></param>
-        public void _0x31(Registers registers, Instruction instruction)
+        public void _0x31(Stack stack, Registers registers, Instruction instruction, IMemory memory)
         {
             registers.SP.Value = instruction.NN;
             registers.PC.Value += 3;
