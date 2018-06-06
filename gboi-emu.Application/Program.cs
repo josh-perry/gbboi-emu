@@ -15,6 +15,8 @@ namespace gboi_emu.Application
 
             gameboy.PowerUp();
 
+            gameboy.Cpu.Registers.PC.Value = 0x00;
+
             while (true)
             {
                 gameboy.Cpu.Cycle();
