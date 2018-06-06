@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MockCartridge.cs" />
+    <Compile Include="OpCodes\0x32.cs" />
     <Compile Include="OpCodes\0x00.cs" />
     <Compile Include="MemoryInit.cs" />
     <Compile Include="OpCodes\0x01.cs" />
