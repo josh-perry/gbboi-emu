@@ -53,6 +53,7 @@
     <Compile Include="Exceptions\OpCodeNotSupportedException.cs" />
     <Compile Include="Opcodes\0x0.cs" />
     <Compile Include="Opcodes\0x01.cs" />
+    <Compile Include="Opcodes\0x21.cs" />
     <Compile Include="Opcodes\0x3.cs" />
     <Compile Include="Opcodes\0x50.cs" />
     <Compile Include="Opcodes\0x66.cs" />
