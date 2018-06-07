@@ -7,6 +7,8 @@ namespace gbboi_emu
     {
         public Dictionary<int, IOpcode> Ops;
 
+        public Dictionary<int, IOpcode> ExtendedOps { get; set; }
+
         public OpExecutor()
         {
             Ops = new Dictionary<int, IOpcode>
@@ -38,6 +40,11 @@ namespace gbboi_emu
                 {0xF400, new UnsupportedOpcode()},
                 {0xFC00, new UnsupportedOpcode()},
                 {0xFD00, new UnsupportedOpcode()}
+            };
+
+            ExtendedOps = new Dictionary<int, IOpcode>
+            {
+                {0xCB7C, new _0xCB7C()}
             };
         }
     }

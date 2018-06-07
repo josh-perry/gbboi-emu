@@ -36,12 +36,19 @@ namespace gbboi_emu
         {
             var maskedOpcode = CurrentInstruction.Opcode & 0xFF00;
 
-            if (!OpExecutor.Ops.ContainsKey(maskedOpcode))
+            if (!OpExecutor.Ops.ContainsKey(maskedOpcode) && !OpExecutor.ExtendedOps.ContainsKey(CurrentInstruction.Opcode))
             {
                 throw new OpCodeNotSupportedException($"Opcode 0x{CurrentInstruction.Opcode.ToString("X4")} not supported!");
             }
 
-            CurrentOpcode = OpExecutor.Ops[maskedOpcode];
+            if (maskedOpcode == 0xCB00)
+            {
+                CurrentOpcode = OpExecutor.ExtendedOps[CurrentInstruction.Opcode];
+            }
+            else
+            {
+                CurrentOpcode = OpExecutor.Ops[maskedOpcode];
+            }
 
             var pc = Registers.PC.Value.ToString("x8");
             Console.WriteLine($"{pc} {CurrentOpcode.Mnemonic}");
