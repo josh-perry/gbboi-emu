@@ -3,7 +3,7 @@
 namespace gbboi_emu.Tests.OpCodes
 {
     [TestFixture]
-    [Category("0x31")]
+    [Category("0x50")]
     public class OpCode0x50Tests
     {
         [Test]
