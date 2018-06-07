@@ -1,14 +1,18 @@
-﻿namespace gbboi_emu
+﻿namespace gbboi_emu.Opcodes
 {
-    public partial class OpExecutor
+    /// <summary>
+    /// ADC A,n
+    /// Add 8-bit immediate and carry to A
+    /// </summary>
+    /// <param name="registers"></param>
+    /// <param name="instruction"></param>
+    public class _0xCE : IOpcode
     {
-        /// <summary>
-        /// ADC A,n
-        /// Add 8-bit immediate and carry to A
-        /// </summary>
-        /// <param name="registers"></param>
-        /// <param name="instruction"></param>
-        public void _0xCE(Stack stack, Registers registers, Instruction instruction, IMemory memory)
+        public short Length { get; set; } = 1;
+
+        public short Cycles { get; set; } = 1;
+
+        public void Execute(Stack stack, Registers registers, Instruction instruction, IMemory memory)
         {
             var originalValue = registers.A.Value;
 

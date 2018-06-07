@@ -43,7 +43,7 @@ namespace gbboi_emu
                 throw new OpCodeNotSupportedException($"Opcode 0x{CurrentInstruction.Opcode.ToString("X4")} not supported!");
             }
 
-            OpExecutor.Ops[maskedOpcode](Stack, Registers, CurrentInstruction, Memory);
+            OpExecutor.Ops[maskedOpcode].Execute(Stack, Registers, CurrentInstruction, Memory);
         }
 
         public void Cycle()

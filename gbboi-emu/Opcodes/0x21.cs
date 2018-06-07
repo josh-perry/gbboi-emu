@@ -1,12 +1,16 @@
-﻿namespace gbboi_emu
+﻿namespace gbboi_emu.Opcodes
 {
-    public partial class OpExecutor
+    /// <summary>
+    /// LD HL,nn
+    /// Load 16-bit immediate into HL
+    /// </summary>
+    public class _0x21 : IOpcode
     {
-        /// <summary>
-        /// LD HL,nn
-        /// Load 16-bit immediate into HL
-        /// </summary>
-        public void _0x21(Stack stack, Registers registers, Instruction instruction, IMemory memory)
+        public short Length { get; set; } = 1;
+
+        public short Cycles { get; set; } = 1;
+
+        public void Execute(Stack stack, Registers registers, Instruction instruction, IMemory memory)
         {
             registers.HL.Value = instruction.NN;
             registers.PC.Value += 3;

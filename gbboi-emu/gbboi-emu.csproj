@@ -47,6 +47,7 @@
     <Compile Include="ICpu.cs" />
     <Compile Include="IMemory.cs" />
     <Compile Include="Instruction.cs" />
+    <Compile Include="IOpcode.cs" />
     <Compile Include="IRegister.cs" />
     <Compile Include="Memory.cs" />
     <Compile Include="Exceptions\NoCartridgeInsertedException.cs" />
@@ -54,7 +55,7 @@
     <Compile Include="Opcodes\0x0.cs" />
     <Compile Include="Opcodes\0x01.cs" />
     <Compile Include="Opcodes\0x21.cs" />
-    <Compile Include="Opcodes\0x3.cs" />
+    <Compile Include="Opcodes\0x31.cs" />
     <Compile Include="Opcodes\0x32.cs" />
     <Compile Include="Opcodes\0x50.cs" />
     <Compile Include="Opcodes\0x66.cs" />

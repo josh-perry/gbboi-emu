@@ -1,11 +1,10 @@
 ﻿namespace gbboi_emu.Opcodes
 {
     /// <summary>
-    /// LD H,(HL)
-    /// Copy value pointed by HL to H
-    /// No operation
+    /// LD SP,nn
+    /// Load 16-bit immediate into SP
     /// </summary>
-    public class _0x66 : IOpcode
+    public class _0x31 : IOpcode
     {
         public short Length { get; set; } = 1;
 
@@ -13,9 +12,8 @@
 
         public void Execute(Stack stack, Registers registers, Instruction instruction, IMemory memory)
         {
-            registers.H.Value = memory.Bytes[registers.HL.Value];
-
-            registers.PC.Value += 1;
+            registers.SP.Value = instruction.NN;
+            registers.PC.Value += 3;
         }
     }
 }

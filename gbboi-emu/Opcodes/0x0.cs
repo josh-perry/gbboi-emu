@@ -1,15 +1,16 @@
-﻿using System;
-
-namespace gbboi_emu
+﻿namespace gbboi_emu.Opcodes
 {
-    public partial class OpExecutor
+    /// <summary>
+    /// NOP
+    /// No operation
+    /// </summary>
+    public class _0x00 : IOpcode
     {
-        /// <summary>
-        /// NOP
-        /// No operation
-        /// </summary>
-        /// <param name="registers"></param>
-        public void _0x00(Stack stack, Registers registers, Instruction instruction, IMemory memory)
+        public short Length { get; set; } = 1;
+
+        public short Cycles { get; set; } = 1;
+
+        public void Execute(Stack stack, Registers registers, Instruction instruction, IMemory memory)
         {
             registers.PC.Value += 1;
         }

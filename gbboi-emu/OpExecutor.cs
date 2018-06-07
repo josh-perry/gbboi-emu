@@ -1,44 +1,43 @@
 ﻿using System.Collections.Generic;
+using gbboi_emu.Opcodes;
 
 namespace gbboi_emu
 {
-    public partial class OpExecutor
+    public class OpExecutor
     {
-        public delegate void Opcode(Stack s, Registers r, Instruction i, IMemory m);
-
-        public Dictionary<int, Opcode> Ops;
+        public Dictionary<int, IOpcode> Ops;
 
         public OpExecutor()
         {
-            Ops = new Dictionary<int, Opcode>
+            Ops = new Dictionary<int, IOpcode>
             {
-                {0x0000, _0x00},
+                {0x0000, new _0x00()},
 
-                {0x0100, _0x01},
-                {0x2100, _0x21},
-                {0x3100, _0x31},
-                {0x3200, _0x32},
-                {0x5000, _0x50},
-                {0xCE00, _0xCE},
-                {0x6600, _0x66},
-                {0xAF00, _0xAF},
-                {0xC300, _0xC3},
-                {0xCC00, _0xCC},
-                {0xFF00, _0xFF},
+                {0x0100, new _0x01()},
+                {0x2100, new _0x21()},
+                {0x3100, new _0x31()},
+                {0x3200, new _0x32()},
+                {0x5000, new _0x50()},
+                {0xCE00, new _0xCE()},
+                {0x6600, new _0x66()},
+                {0xAF00, new _0xAF()},
+                {0xC300, new _0xC3()},
+                {0xCC00, new _0xCC()},
+                {0xFF00, new _0xFF()},
 
                 // Unsupported opcodes
-                {0xD300, UnsupportedOpcode},
-                {0xDB00, UnsupportedOpcode},
-                {0xDD00, UnsupportedOpcode},
-                {0xE300, UnsupportedOpcode},
-                {0xE400, UnsupportedOpcode},
-                {0xEB00, UnsupportedOpcode},
-                {0xEC00, UnsupportedOpcode},
-                {0xED00, UnsupportedOpcode},
-                {0xF200, UnsupportedOpcode},
-                {0xF400, UnsupportedOpcode},
-                {0xFC00, UnsupportedOpcode},
-                {0xFD00, UnsupportedOpcode}
+                {0xD300, new UnsupportedOpcode()},
+                {0xDB00, new UnsupportedOpcode()},
+                {0xDD00, new UnsupportedOpcode()},
+                {0xE300, new UnsupportedOpcode()},
+                {0xE400, new UnsupportedOpcode()},
+                {0xEB00, new UnsupportedOpcode()},
+                {0xEC00, new UnsupportedOpcode()},
+                {0xED00, new UnsupportedOpcode()},
+                {0xF200, new UnsupportedOpcode()},
+                {0xF400, new UnsupportedOpcode()},
+                {0xFC00, new UnsupportedOpcode()},
+                {0xFD00, new UnsupportedOpcode()}
             };
         }
     }
