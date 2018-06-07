@@ -12,6 +12,8 @@ namespace gbboi_emu
 
         public Instruction CurrentInstruction { get; set; }
 
+        public IOpcode CurrentOpcode { get; set; }
+
         public OpExecutor OpExecutor { get; set; }
 
         public Stack Stack { get; set; }
@@ -39,14 +41,14 @@ namespace gbboi_emu
                 throw new OpCodeNotSupportedException($"Opcode 0x{CurrentInstruction.Opcode.ToString("X4")} not supported!");
             }
 
-            var opcode = OpExecutor.Ops[maskedOpcode];
+            CurrentOpcode = OpExecutor.Ops[maskedOpcode];
 
             var pc = Registers.PC.Value.ToString("x8");
-            Console.WriteLine($"{pc} {opcode.Mnemonic}");
+            Console.WriteLine($"{pc} {CurrentOpcode.Mnemonic}");
 
-            opcode.Execute(Stack, Registers, CurrentInstruction, Memory);
+            CurrentOpcode.Execute(Stack, Registers, CurrentInstruction, Memory);
         }
-
+        
         public void Cycle()
         {
             FetchInstruction();
