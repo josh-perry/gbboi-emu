@@ -1,6 +1,6 @@
 ﻿namespace gbboi_emu
 {
-    public partial class Opcodes
+    public partial class OpExecutor
     {
         /// <summary>
         /// RST 38
