@@ -4,9 +4,11 @@
     {
         string Mnemonic { get; set; }
 
-        short Length { get; set; }
+        ushort Length { get; set; }
 
         short Cycles { get; set; }
+
+        bool IncrementProgramCounter { get; set; }
 
         void Execute(Stack stack, Registers registers, Instruction instruction, IMemory memory);
     }

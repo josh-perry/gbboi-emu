@@ -9,14 +9,15 @@
     {
         public string Mnemonic { get; set; } = "LD D,B";
 
-        public short Length { get; set; } = 1;
+        public ushort Length { get; set; } = 1;
 
         public short Cycles { get; set; } = 1;
+
+        public bool IncrementProgramCounter { get; set; } = true;
 
         public void Execute(Stack stack, Registers registers, Instruction instruction, IMemory memory)
         {
             registers.D.Value = registers.B.Value;
-            registers.PC.Value += 1;
         }
     }
 }

@@ -58,7 +58,12 @@ namespace gbboi_emu
         
         private void IncrementProgramCounter()
         {
-            //Registers.PC.Value += 2;
+            if (!CurrentOpcode.IncrementProgramCounter)
+            {
+                return;
+            }
+
+            Registers.PC.Value += CurrentOpcode.Length;
         }
     }
 }

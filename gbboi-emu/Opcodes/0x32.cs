@@ -9,16 +9,16 @@
     {
         public string Mnemonic { get; set; } = "LDD (HL),A";
 
-        public short Length { get; set; } = 1;
+        public ushort Length { get; set; } = 1;
 
         public short Cycles { get; set; } = 1;
+
+        public bool IncrementProgramCounter { get; set; } = true;
 
         public void Execute(Stack stack, Registers registers, Instruction instruction, IMemory memory)
         {
             memory.Bytes[registers.HL.Value] = registers.A.Value;
             registers.HL.Value--;
-
-            registers.PC.Value += 1;
         }
     }
 }

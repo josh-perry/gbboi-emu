@@ -8,14 +8,15 @@
     {
         public string Mnemonic { get; set; } = "LD SP,nn";
 
-        public short Length { get; set; } = 1;
+        public ushort Length { get; set; } = 3;
 
         public short Cycles { get; set; } = 1;
+
+        public bool IncrementProgramCounter { get; set; } = true;
 
         public void Execute(Stack stack, Registers registers, Instruction instruction, IMemory memory)
         {
             registers.SP.Value = instruction.NN;
-            registers.PC.Value += 3;
         }
     }
 }

@@ -8,13 +8,15 @@
     {
         public string Mnemonic { get; set; } = "NOP";
 
-        public short Length { get; set; } = 1;
+        public ushort Length { get; set; } = 1;
 
         public short Cycles { get; set; } = 1;
 
+        public bool IncrementProgramCounter { get; set; } = true;
+
         public void Execute(Stack stack, Registers registers, Instruction instruction, IMemory memory)
         {
-            registers.PC.Value += 1;
+            // NOP
         }
     }
 }
