@@ -12,7 +12,7 @@ namespace gbboi_emu
 
         public Instruction CurrentInstruction { get; set; }
 
-        public Opcodes Opcodes { get; set; }
+        public OpExecutor OpExecutor { get; set; }
 
         public Stack Stack { get; set; }
         
@@ -20,8 +20,8 @@ namespace gbboi_emu
         {
             Memory = memory;
             Registers = registers;
-            Opcodes = new Opcodes();
             Stack = new Stack();
+            OpExecutor = new OpExecutor();
         }
 
         public void FetchInstruction()
@@ -36,73 +36,14 @@ namespace gbboi_emu
             var op = "0x" + CurrentInstruction.Opcode.ToString("x4");
             Console.WriteLine($"{pc} {op}");
 
-            switch (CurrentInstruction.Opcode & 0xFF00)
+            var maskedOpcode = CurrentInstruction.Opcode & 0xFF00;
+
+            if (!OpExecutor.Ops.ContainsKey(maskedOpcode))
             {
-                case 0x0000:
-                    Opcodes._0x00(Stack, Registers, CurrentInstruction, Memory);
-                    break;
-
-                case 0x0100:
-                    Opcodes._0x01(Stack, Registers, CurrentInstruction, Memory);
-                    break;
-
-                case 0x2100:
-                    Opcodes._0x21(Stack, Registers, CurrentInstruction, Memory);
-                    break;
-
-                case 0x3100:
-                    Opcodes._0x31(Stack, Registers, CurrentInstruction, Memory);
-                    break;
-
-                case 0x3200:
-                    Opcodes._0x32(Stack, Registers, CurrentInstruction, Memory);
-                    break;
-
-                case 0x5000:
-                    Opcodes._0x50(Stack, Registers, CurrentInstruction, Memory);
-                    break;
-
-                case 0xCE00:
-                    Opcodes._0xCE(Stack, Registers, CurrentInstruction, Memory);
-                    break;
-
-                case 0x6600:
-                    Opcodes._0x66(Stack, Registers, CurrentInstruction, Memory);
-                    break;
-
-                case 0xAF00:
-                    Opcodes._0xAF(Stack, Registers, CurrentInstruction, Memory);
-                    break;
-
-                case 0xC300:
-                    Opcodes._0xC3(Stack, Registers, CurrentInstruction, Memory);
-                    break;
-
-                case 0xCC00:
-                    Opcodes._0xCC(Stack, Registers, CurrentInstruction, Memory);
-                    break;
-
-                case 0xFF00:
-                    Opcodes._0xFF(Stack, Registers, CurrentInstruction, Memory);
-                    break;
-
-                case 0xD300:
-                case 0xDB00:
-                case 0xDD00:
-                case 0xE300:
-                case 0xE400:
-                case 0xEB00:
-                case 0xEC00:
-                case 0xED00:
-                case 0xF200:
-                case 0xF400:
-                case 0xFC00:
-                case 0xFD00:
-                    throw new OperationNotSupportedByCpuException(CurrentInstruction.Opcode);
-
-                default:
-                    throw new OpCodeNotSupportedException($"Opcode 0x{CurrentInstruction.Opcode.ToString("X4")} not supported!");
+                throw new OpCodeNotSupportedException($"Opcode 0x{CurrentInstruction.Opcode.ToString("X4")} not supported!");
             }
+
+            OpExecutor.Ops[maskedOpcode](Stack, Registers, CurrentInstruction, Memory);
         }
 
         public void Cycle()
