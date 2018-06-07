@@ -32,10 +32,6 @@ namespace gbboi_emu
 
         public void ExecuteInstruction()
         {
-            var pc = Registers.PC.Value.ToString("x8");
-            var op = "0x" + CurrentInstruction.Opcode.ToString("x4");
-            Console.WriteLine($"{pc} {op}");
-
             var maskedOpcode = CurrentInstruction.Opcode & 0xFF00;
 
             if (!OpExecutor.Ops.ContainsKey(maskedOpcode))
@@ -43,7 +39,12 @@ namespace gbboi_emu
                 throw new OpCodeNotSupportedException($"Opcode 0x{CurrentInstruction.Opcode.ToString("X4")} not supported!");
             }
 
-            OpExecutor.Ops[maskedOpcode].Execute(Stack, Registers, CurrentInstruction, Memory);
+            var opcode = OpExecutor.Ops[maskedOpcode];
+
+            var pc = Registers.PC.Value.ToString("x8");
+            Console.WriteLine($"{pc} {opcode.Mnemonic}");
+
+            opcode.Execute(Stack, Registers, CurrentInstruction, Memory);
         }
 
         public void Cycle()
