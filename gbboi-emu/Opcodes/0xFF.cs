@@ -6,6 +6,8 @@
     /// </summary>
     public class _0xFF : IOpcode
     {
+        public string Mnemonic { get; set; } = "RST 38";
+
         public short Length { get; set; } = 1;
 
         public short Cycles { get; set; } = 1;

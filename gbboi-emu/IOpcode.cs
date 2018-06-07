@@ -2,6 +2,8 @@
 {
     public interface IOpcode
     {
+        string Mnemonic { get; set; }
+
         short Length { get; set; }
 
         short Cycles { get; set; }

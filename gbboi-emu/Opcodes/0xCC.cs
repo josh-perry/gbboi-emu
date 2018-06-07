@@ -9,6 +9,8 @@
     /// <param name="memory"></param>
     public class _0xCC : IOpcode
     {
+        public string Mnemonic { get; set; } = "CALL Z,nn";
+
         public short Length { get; set; } = 1;
 
         public short Cycles { get; set; } = 1;

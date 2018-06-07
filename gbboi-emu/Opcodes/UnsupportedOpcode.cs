@@ -4,7 +4,10 @@ namespace gbboi_emu.Opcodes
 {
     public class UnsupportedOpcode : IOpcode
     {
+        public string Mnemonic { get; set; } = "UnsupportedOpcode";
+
         public short Length { get; set; } = 0;
+
         public short Cycles { get; set; } = 0;
 
         public void Execute(Stack stack, Registers registers, Instruction instruction, IMemory memory)

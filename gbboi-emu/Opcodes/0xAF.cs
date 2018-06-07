@@ -7,6 +7,8 @@
     /// <param name="registers"></param>
     public class _0xAF : IOpcode
     {
+        public string Mnemonic { get; set; } = "XOR A";
+
         public short Length { get; set; } = 1;
 
         public short Cycles { get; set; } = 1;

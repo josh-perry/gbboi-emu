@@ -8,6 +8,8 @@
     /// <param name="instruction"></param>
     public class _0xCE : IOpcode
     {
+        public string Mnemonic { get; set; } = "ADC A,n";
+
         public short Length { get; set; } = 1;
 
         public short Cycles { get; set; } = 1;
