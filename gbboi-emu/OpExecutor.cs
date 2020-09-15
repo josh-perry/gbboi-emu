@@ -16,6 +16,7 @@ namespace gbboi_emu
                 {0x0000, new _0x00()},
 
                 {0x0100, new _0x01()},
+                {0x2000, new _0x20()},
                 {0x2100, new _0x21()},
                 {0x3100, new _0x31()},
                 {0x3200, new _0x32()},
