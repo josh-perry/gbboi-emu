@@ -1,6 +1,6 @@
 ﻿using gbboi_emu;
 
-namespace gboi_emu.Application
+namespace gbboi_emu.Application
 {
     class Program
     {

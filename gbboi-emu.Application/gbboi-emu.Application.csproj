@@ -2,8 +2,8 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <OutputType>Exe</OutputType>
-    <RootNamespace>gboi_emu.Application</RootNamespace>
-    <AssemblyName>gboi-emu.Application</AssemblyName>
+    <RootNamespace>gbboi_emu.Application</RootNamespace>
+    <AssemblyName>gbboi-emu.Application</AssemblyName>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
   <ItemGroup>
