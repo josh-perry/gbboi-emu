@@ -13,4 +13,10 @@
     <PackageReference Include="NUnit3TestAdapter" Version="3.17.0"/>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.7.1"/>
   </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="ROMs\*.*">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
 </Project>

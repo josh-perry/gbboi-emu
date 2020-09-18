@@ -24,7 +24,6 @@ namespace gbboi_emu.Tests
         }
 
         [Test]
-        [Ignore("Need a copy of DMG_ROM!")]
         public void LoadDmgBootloader()
         {
             // Arrange
@@ -34,7 +33,7 @@ namespace gbboi_emu.Tests
 
             // Act
             gameboy.Memory.Init(0xFFFF);
-            gameboy.Memory.LoadMemoryBankFromFile(@"DMG_ROM.bin", 0);
+            gameboy.Memory.LoadMemoryBankFromFile(@"ROMs/dmg_boot.bin", 0);
             
             // Assert
             Assert.That(gameboy.Memory.Bytes[0x00] == 0x31);
