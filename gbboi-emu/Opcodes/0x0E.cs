@@ -4,7 +4,6 @@ namespace gbboi_emu.Opcodes
 {
     /// <summary>
     /// LD
-    ///
     /// </summary>
     [OneByteOpcode]
     public class _0x0E : IOpcode
@@ -19,7 +18,7 @@ namespace gbboi_emu.Opcodes
 
         public void Execute(Instruction instruction, ICpu cpu, IMemory memory)
         {
-            throw new NotImplementedException(Mnemonic);
+            cpu.Registers.C.Value = (byte)instruction.N;
         }
     }
 }
