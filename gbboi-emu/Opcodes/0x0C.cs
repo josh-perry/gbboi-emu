@@ -3,13 +3,12 @@ using System;
 namespace gbboi_emu.Opcodes
 {
     /// <summary>
-    /// INC
-    ///
+    /// INC C
     /// </summary>
     [OneByteOpcode]
     public class _0x0C : IOpcode
     {
-        public string Mnemonic { get; set; } = "INC";
+        public string Mnemonic { get; set; } = "INC C";
 
         public ushort Length { get; set; } = 1;
 
@@ -19,7 +18,7 @@ namespace gbboi_emu.Opcodes
 
         public void Execute(Instruction instruction, ICpu cpu, IMemory memory)
         {
-            throw new NotImplementedException(Mnemonic);
+            cpu.Registers.C.Value++;
         }
     }
 }
