@@ -1,15 +1,12 @@
-using System;
-
 namespace gbboi_emu.Opcodes
 {
     /// <summary>
-    /// RLCA
-    ///
+    /// RLC A
     /// </summary>
     [OneByteOpcode]
     public class _0x07 : IOpcode
     {
-        public string Mnemonic { get; set; } = "RLCA";
+        public string Mnemonic { get; set; } = "RLC A";
 
         public ushort Length { get; set; } = 1;
 
@@ -19,7 +16,20 @@ namespace gbboi_emu.Opcodes
 
         public void Execute(Instruction instruction, ICpu cpu, IMemory memory)
         {
-            throw new NotImplementedException(Mnemonic);
+            if ((cpu.Registers.A.Value & 0x80) != 0)
+            {
+                cpu.Registers.A.Value = (byte)((cpu.Registers.A.Value << 1) | 0x01);
+                cpu.Registers.F.CarryFlag = true;
+            }
+            else
+            {
+                cpu.Registers.A.Value <<= 1;
+                cpu.Registers.F.CarryFlag = true;
+            }
+
+            cpu.Registers.F.ZeroFlag = false;
+            cpu.Registers.F.SubtractFlag = false;
+            cpu.Registers.F.HalfCarryFlag = false;
         }
     }
 }
