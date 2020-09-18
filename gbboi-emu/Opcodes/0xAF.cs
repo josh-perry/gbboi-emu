@@ -5,6 +5,7 @@
     /// Logical XOR A against A
     /// </summary>
     /// <param name="registers"></param>
+    [OneByteOpcode]
     public class _0xAF : IOpcode
     {
         public string Mnemonic { get; set; } = "XOR A";

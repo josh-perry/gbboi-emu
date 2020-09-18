@@ -4,6 +4,7 @@
     /// LD BC,nn
     /// Load 16-bit immediate into BC
     /// </summary>
+    [OneByteOpcode]
     public class _0x01 : IOpcode
     {
         public string Mnemonic { get; set; } = "LD BC,nn";

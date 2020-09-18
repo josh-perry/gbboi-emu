@@ -3,8 +3,8 @@
     /// <summary>
     /// LD H,(HL)
     /// Copy value pointed by HL to H
-    /// No operation
     /// </summary>
+    [OneByteOpcode]
     public class _0x66 : IOpcode
     {
         public string Mnemonic { get; set; } = "LD H,(HL)";

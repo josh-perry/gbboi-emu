@@ -4,6 +4,7 @@
     /// RST 38
     /// Call routine at address 0038h
     /// </summary>
+    [OneByteOpcode]
     public class _0xFF : IOpcode
     {
         public string Mnemonic { get; set; } = "RST 38";

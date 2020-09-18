@@ -4,6 +4,7 @@
     /// JR NZ,n
     /// Relative jump by signed immediate if last result was not zero
     /// </summary>
+    [OneByteOpcode]
     public class _0x20 : IOpcode
     {
         public string Mnemonic { get; set; } = "JR NZ,n";

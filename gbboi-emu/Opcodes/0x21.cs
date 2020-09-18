@@ -4,6 +4,7 @@
     /// LD HL,nn
     /// Load 16-bit immediate into HL
     /// </summary>
+    [OneByteOpcode]
     public class _0x21 : IOpcode
     {
         public string Mnemonic { get; set; } = "LD HL,nn";

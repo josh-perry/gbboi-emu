@@ -4,6 +4,7 @@
     /// LD SP,nn
     /// Load 16-bit immediate into SP
     /// </summary>
+    [OneByteOpcode]
     public class _0x31 : IOpcode
     {
         public string Mnemonic { get; set; } = "LD SP,nn";

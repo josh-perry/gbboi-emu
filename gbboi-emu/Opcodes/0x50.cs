@@ -5,6 +5,7 @@
     /// Copy B to D
     /// </summary>
     /// <param name="registers"></param>
+    [OneByteOpcode]
     public class _0x50 : IOpcode
     {
         public string Mnemonic { get; set; } = "LD D,B";

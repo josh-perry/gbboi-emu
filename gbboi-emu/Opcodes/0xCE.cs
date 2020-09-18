@@ -6,6 +6,7 @@
     /// </summary>
     /// <param name="registers"></param>
     /// <param name="instruction"></param>
+    [OneByteOpcode]
     public class _0xCE : IOpcode
     {
         public string Mnemonic { get; set; } = "ADC A,n";

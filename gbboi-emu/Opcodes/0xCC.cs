@@ -7,6 +7,7 @@
     /// <param name="registers"></param>
     /// <param name="instruction"></param>
     /// <param name="memory"></param>
+    [OneByteOpcode]
     public class _0xCC : IOpcode
     {
         public string Mnemonic { get; set; } = "CALL Z,nn";

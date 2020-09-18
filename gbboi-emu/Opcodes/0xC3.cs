@@ -4,6 +4,7 @@
     /// JP nn
     /// Absolute jump to 16-bit location
     /// </summary>
+    [OneByteOpcode]
     public class _0xC3 : IOpcode
     {
         public string Mnemonic { get; set; } = "JP nn";
