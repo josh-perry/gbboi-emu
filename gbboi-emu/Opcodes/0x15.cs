@@ -16,7 +16,6 @@ namespace gbboi_emu.Opcodes
 
         public bool IncrementProgramCounter { get; set; } = true;
 
-
         public void Execute(Instruction instruction, ICpu cpu, IMemory memory)
         {
             var originalValue = cpu.Registers.D.Value;
