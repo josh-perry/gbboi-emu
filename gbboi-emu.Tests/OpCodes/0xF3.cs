@@ -4,7 +4,6 @@ namespace gbboi_emu.Tests.OpCodes
 {
     [TestFixture]
     [Category("0xF3")]
-    [Ignore("0xF3 not implemented yet!")]
     public class OpCode0xF3Tests
     {
         [Test]
@@ -17,14 +16,14 @@ namespace gbboi_emu.Tests.OpCodes
             gameboy.PowerUp();
 
             gameboy.Cpu.Registers.PC.Value = 0;
-            // gameboy.Memory.Bytes[0x00] = 0x00;
-            // gameboy.Memory.Bytes[0x01] = 0x00;
+            gameboy.Memory.Bytes[0x00] = 0xF3;
+            gameboy.Memory.Bytes[0x01] = 0x00;
 
             // Act
             gameboy.Cpu.Cycle();
 
             // Assert
-            // Assert.That(true);
+            Assert.That(!cpu.InterruptsEnabled);
         }
     }
 }

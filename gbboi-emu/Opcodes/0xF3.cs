@@ -19,7 +19,7 @@ namespace gbboi_emu.Opcodes
 
         public void Execute(Instruction instruction, ICpu cpu, IMemory memory)
         {
-            throw new NotImplementedException(Mnemonic);
+            cpu.InterruptsEnabled = false;
         }
     }
 }

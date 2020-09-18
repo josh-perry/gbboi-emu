@@ -10,6 +10,8 @@
 
         Stack Stack { get; set; }
 
+        bool InterruptsEnabled { get; set; }
+
         void FetchInstruction();
 
         void ExecuteInstruction();
