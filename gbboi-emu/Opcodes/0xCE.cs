@@ -17,17 +17,17 @@
 
         public bool IncrementProgramCounter { get; set; } = true;
 
-        public void Execute(Stack stack, Registers registers, Instruction instruction, IMemory memory)
+        public void Execute(Instruction instruction, ICpu cpu, IMemory memory)
         {
-            var originalValue = registers.A.Value;
+            var originalValue = cpu.Registers.A.Value;
 
-            registers.A.Value = (byte) (registers.A.Value + instruction.N);
+            cpu.Registers.A.Value = (byte) (cpu.Registers.A.Value + instruction.N);
 
             // Flags
-            registers.F.SubtractFlag = false;
-            registers.F.CarryFlag = originalValue + instruction.N > byte.MaxValue;
-            registers.F.ZeroFlag = registers.A.Value == 0;
-            registers.F.HalfCarryFlag = (((originalValue & 0xF) + (instruction.N & 0xF)) & 0x10) == 0x10;
+            cpu.Registers.F.SubtractFlag = false;
+            cpu.Registers.F.CarryFlag = originalValue + instruction.N > byte.MaxValue;
+            cpu.Registers.F.ZeroFlag = cpu.Registers.A.Value == 0;
+            cpu.Registers.F.HalfCarryFlag = (((originalValue & 0xF) + (instruction.N & 0xF)) & 0x10) == 0x10;
         }
     }
 }

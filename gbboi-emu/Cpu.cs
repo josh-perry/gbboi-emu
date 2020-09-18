@@ -17,9 +17,12 @@ namespace gbboi_emu
         public OpExecutor OpExecutor { get; set; }
 
         public Stack Stack { get; set; }
+
+        public bool InterruptsEnabled { get; set; }
         
         public Cpu(IMemory memory, Registers registers)
         {
+            InterruptsEnabled = false;
             Memory = memory;
             Registers = registers;
             Stack = new Stack();
@@ -53,7 +56,7 @@ namespace gbboi_emu
             var pc = Registers.PC.Value.ToString("x8");
             Console.WriteLine($"{pc} {CurrentOpcode.Mnemonic}");
 
-            CurrentOpcode.Execute(Stack, Registers, CurrentInstruction, Memory);
+            CurrentOpcode.Execute(CurrentInstruction, this, Memory);
         }
         
         public void Cycle()

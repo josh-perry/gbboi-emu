@@ -15,7 +15,7 @@
 
         public bool IncrementProgramCounter { get; set; } = true;
 
-        public void Execute(Stack stack, Registers registers, Instruction instruction, IMemory memory)
+        public void Execute(Instruction instruction, ICpu cpu, IMemory memory)
         {
             // NOP
         }

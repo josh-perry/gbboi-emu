@@ -15,15 +15,15 @@
 
         public bool IncrementProgramCounter { get; set; } = true;
 
-        public void Execute(Stack stack, Registers registers, Instruction instruction, IMemory memory)
+        public void Execute(Instruction instruction, ICpu cpu, IMemory memory)
         {
-            if (registers.F.ZeroFlag)
+            if (cpu.Registers.F.ZeroFlag)
             {
                 IncrementProgramCounter = true;
                 return;
             }
 
-            registers.PC.Value += instruction.N;
+            cpu.Registers.PC.Value += instruction.N;
             IncrementProgramCounter = false;
         }
     }

@@ -14,12 +14,12 @@
 
         public bool IncrementProgramCounter { get; set; } = true;
 
-        public void Execute(Stack stack, Registers registers, Instruction instruction, IMemory memory)
+        public void Execute(Instruction instruction, ICpu cpu, IMemory memory)
         {
             var mask = 1 << 7;
-            registers.F.ZeroFlag = (registers.H.Value & mask) != mask;
-            registers.F.HalfCarryFlag = true;
-            registers.F.SubtractFlag = false;
+            cpu.Registers.F.ZeroFlag = (cpu.Registers.H.Value & mask) != mask;
+            cpu.Registers.F.HalfCarryFlag = true;
+            cpu.Registers.F.SubtractFlag = false;
         }
     }
 }

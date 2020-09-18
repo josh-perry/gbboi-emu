@@ -18,16 +18,16 @@
 
         public bool IncrementProgramCounter { get; set; } = true;
 
-        public void Execute(Stack stack, Registers registers, Instruction instruction, IMemory memory)
+        public void Execute(Instruction instruction, ICpu cpu, IMemory memory)
         {
             // Only call the routine if the zero flag is set
-            if (!registers.F.ZeroFlag)
+            if (!cpu.Registers.F.ZeroFlag)
             {
                 IncrementProgramCounter = true;
                 return;
             }
 
-            stack.Call(instruction.NN, registers, memory);
+            cpu.Stack.Call(instruction.NN, cpu.Registers, memory);
             IncrementProgramCounter = false;
         }
     }

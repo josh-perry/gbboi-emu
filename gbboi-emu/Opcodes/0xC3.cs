@@ -15,9 +15,9 @@
 
         public bool IncrementProgramCounter { get; set; } = false;
 
-        public void Execute(Stack stack, Registers registers, Instruction instruction, IMemory memory)
+        public void Execute(Instruction instruction, ICpu cpu, IMemory memory)
         {
-            registers.PC.Value = instruction.NN;
+            cpu.Registers.PC.Value = instruction.NN;
         }
     }
 }

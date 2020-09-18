@@ -8,6 +8,8 @@
 
         Registers Registers { get; set; }
 
+        Stack Stack { get; set; }
+
         void FetchInstruction();
 
         void ExecuteInstruction();

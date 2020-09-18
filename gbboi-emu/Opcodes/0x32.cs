@@ -15,10 +15,10 @@
 
         public bool IncrementProgramCounter { get; set; } = true;
 
-        public void Execute(Stack stack, Registers registers, Instruction instruction, IMemory memory)
+        public void Execute(Instruction instruction, ICpu cpu, IMemory memory)
         {
-            memory.Bytes[registers.HL.Value] = registers.A.Value;
-            registers.HL.Value--;
+            memory.Bytes[cpu.Registers.HL.Value] = cpu.Registers.A.Value;
+            cpu.Registers.HL.Value--;
         }
     }
 }

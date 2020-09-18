@@ -10,6 +10,6 @@
 
         bool IncrementProgramCounter { get; set; }
 
-        void Execute(Stack stack, Registers registers, Instruction instruction, IMemory memory);
+        void Execute(Instruction instruction, ICpu cpu, IMemory memory);
     }
 }
