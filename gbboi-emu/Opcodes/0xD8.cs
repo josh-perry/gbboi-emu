@@ -3,13 +3,12 @@ using System;
 namespace gbboi_emu.Opcodes
 {
     /// <summary>
-    /// RET
-    ///
+    /// RET C
     /// </summary>
     [OneByteOpcode]
     public class _0xD8 : IOpcode
     {
-        public string Mnemonic { get; set; } = "RET";
+        public string Mnemonic { get; set; } = "RET C";
 
         public ushort Length { get; set; } = 1;
 
@@ -19,7 +18,9 @@ namespace gbboi_emu.Opcodes
 
         public void Execute(Instruction instruction, ICpu cpu, IMemory memory)
         {
-            throw new NotImplementedException(Mnemonic);
+            if (!cpu.Registers.F.CarryFlag) return;
+
+            cpu.Stack.Return(cpu.Registers, memory);
         }
     }
 }

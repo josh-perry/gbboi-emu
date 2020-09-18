@@ -3,13 +3,12 @@ using System;
 namespace gbboi_emu.Opcodes
 {
     /// <summary>
-    /// CALL
-    ///
+    /// CALL Z,nn
     /// </summary>
     [OneByteOpcode]
     public class _0xCD : IOpcode
     {
-        public string Mnemonic { get; set; } = "CALL";
+        public string Mnemonic { get; set; } = "CALL Z,nn";
 
         public ushort Length { get; set; } = 3;
 
@@ -19,7 +18,12 @@ namespace gbboi_emu.Opcodes
 
         public void Execute(Instruction instruction, ICpu cpu, IMemory memory)
         {
-            throw new NotImplementedException(Mnemonic);
+            if(!cpu.Registers.F.ZeroFlag)
+            {
+                return;
+            }
+
+            cpu.Stack.Call(instruction.NN, cpu.Registers, memory);
         }
     }
 }
