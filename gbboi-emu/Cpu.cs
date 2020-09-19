@@ -53,10 +53,14 @@ namespace gbboi_emu
                 CurrentOpcode = OpExecutor.Ops[maskedOpcode];
             }
 
-            var pc = Registers.PC.Value.ToString("x8");
-            Console.WriteLine($"{pc} {CurrentOpcode.Mnemonic}");
-
+            WriteStatus();
             CurrentOpcode.Execute(CurrentInstruction, this, Memory);
+        }
+
+        private void WriteStatus()
+        {
+            var pc = Registers.PC.Value.ToString("x8");
+            Console.WriteLine($"{pc}\t{CurrentInstruction.Opcode.ToString("X2")}\t{CurrentOpcode.Mnemonic}");
         }
         
         public void Cycle()
