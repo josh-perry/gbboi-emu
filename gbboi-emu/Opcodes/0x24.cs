@@ -3,13 +3,12 @@ using System;
 namespace gbboi_emu.Opcodes
 {
     /// <summary>
-    /// INC
-    ///
+    /// INC H
     /// </summary>
     [OneByteOpcode]
     public class _0x24 : IOpcode
     {
-        public string Mnemonic { get; set; } = "INC";
+        public string Mnemonic { get; set; } = "INC H";
 
         public ushort Length { get; set; } = 1;
 
@@ -19,7 +18,14 @@ namespace gbboi_emu.Opcodes
 
         public void Execute(Instruction instruction, ICpu cpu, IMemory memory)
         {
-            throw new NotImplementedException(Mnemonic);
+            var originalValue = cpu.Registers.H.Value;
+            cpu.Registers.H.Value++;
+
+            cpu.Registers.F.ZeroFlag = cpu.Registers.H.Value == 0;
+            cpu.Registers.F.SubtractFlag = false;
+
+            // TODO: ???
+            cpu.Registers.F.HalfCarryFlag = (((originalValue & 0xF) + (1 & 0xF)) & 0x10) == 0x10;
         }
     }
 }

@@ -4,7 +4,6 @@ namespace gbboi_emu.Opcodes
 {
     /// <summary>
     /// EI
-    ///
     /// </summary>
     [OneByteOpcode]
     public class _0xFB : IOpcode

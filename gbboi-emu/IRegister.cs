@@ -7,6 +7,11 @@
     public class Register8 : IRegister
     {
         public byte Value;
+
+        public override string ToString()
+        {
+            return Value.ToString();
+        }
     }
 
     public class Register16 : IRegister
@@ -28,6 +33,11 @@
         public Register16(Register8 register, Register8 register2)
         {
             Registers = new[] {register, register2};
+        }
+
+        public override string ToString()
+        {
+            return Value.ToString();
         }
     }
 

@@ -20,6 +20,9 @@ namespace gbboi_emu.Application
             while (true)
             {
                 gameboy.Cpu.Cycle();
+
+                // Hack: until we emulate interrupts properly, just set the vblank manually
+                gameboy.Cpu.Memory.Bytes[0xFF44] = 144;
             }
         }
     }

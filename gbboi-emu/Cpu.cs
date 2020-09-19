@@ -61,6 +61,8 @@ namespace gbboi_emu
         {
             var pc = Registers.PC.Value.ToString("x8");
             Console.WriteLine($"{pc}\t{CurrentInstruction.Opcode.ToString("X2")}\t{CurrentOpcode.Mnemonic}");
+            //var r = Registers;
+            //Console.WriteLine($"A={r.A}\tF={r.F}\tB={r.B}\tC={r.C}\tD={r.D}\tE={r.E}\tH={r.H}\tL={r.L}");
         }
         
         public void Cycle()
@@ -68,6 +70,16 @@ namespace gbboi_emu
             FetchInstruction();
             ExecuteInstruction();
             IncrementProgramCounter();
+        }
+
+        public byte ReadImmediateN()
+        {
+            return Memory.ReadByte((ushort)(Registers.PC.Value + 1));
+        }
+        
+        public ushort ReadImmediateNN()
+        {
+            return Memory.ReadWord((ushort)(Registers.PC.Value + 1));
         }
         
         private void IncrementProgramCounter()

@@ -17,5 +17,9 @@
         void ExecuteInstruction();
 
         void Cycle();
+
+        byte ReadImmediateN();
+        
+        ushort ReadImmediateNN();
     }
 }

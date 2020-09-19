@@ -18,7 +18,7 @@ namespace gbboi_emu.Opcodes
 
         public void Execute(Instruction instruction, ICpu cpu, IMemory memory)
         {
-            var n = memory.ReadByte(cpu.Registers.PC.Value);
+            var n = cpu.ReadImmediateN();
 
             cpu.Registers.F.ZeroFlag = cpu.Registers.A.Value == n;
             cpu.Registers.F.CarryFlag = cpu.Registers.A.Value < n;

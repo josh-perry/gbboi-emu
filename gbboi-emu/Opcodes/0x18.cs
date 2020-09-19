@@ -3,13 +3,12 @@ using System;
 namespace gbboi_emu.Opcodes
 {
     /// <summary>
-    /// JR
-    ///
+    /// JR n
     /// </summary>
     [OneByteOpcode]
     public class _0x18 : IOpcode
     {
-        public string Mnemonic { get; set; } = "JR";
+        public string Mnemonic { get; set; } = "JR n";
 
         public ushort Length { get; set; } = 2;
 
@@ -19,7 +18,8 @@ namespace gbboi_emu.Opcodes
 
         public void Execute(Instruction instruction, ICpu cpu, IMemory memory)
         {
-            throw new NotImplementedException(Mnemonic);
+            var b = (sbyte)cpu.ReadImmediateN();
+            cpu.Registers.PC.Value += (ushort)b;
         }
     }
 }

@@ -3,13 +3,12 @@ using System;
 namespace gbboi_emu.Opcodes
 {
     /// <summary>
-    /// LD
-    ///
+    /// LD (nn),A
     /// </summary>
     [OneByteOpcode]
     public class _0xEA : IOpcode
     {
-        public string Mnemonic { get; set; } = "LD";
+        public string Mnemonic { get; set; } = "LD (nn),A";
 
         public ushort Length { get; set; } = 3;
 
@@ -19,7 +18,8 @@ namespace gbboi_emu.Opcodes
 
         public void Execute(Instruction instruction, ICpu cpu, IMemory memory)
         {
-            throw new NotImplementedException(Mnemonic);
+            var nn = cpu.ReadImmediateNN();
+            memory.Bytes[nn] = cpu.Registers.A.Value;
         }
     }
 }
