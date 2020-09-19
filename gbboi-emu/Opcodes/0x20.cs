@@ -9,7 +9,7 @@
     {
         public string Mnemonic { get; set; } = "JR NZ,n";
 
-        public ushort Length { get; set; } = 1;
+        public ushort Length { get; set; } = 2;
 
         public short Cycles { get; set; } = 1;
 
@@ -23,7 +23,7 @@
                 return;
             }
 
-            cpu.Registers.PC.Value += instruction.N;
+            cpu.Registers.PC.Value += memory.ReadByte(cpu.Registers.PC.Value);
             IncrementProgramCounter = false;
         }
     }

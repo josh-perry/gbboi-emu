@@ -26,9 +26,19 @@ namespace gbboi_emu
         /// </summary>
         /// <param name="index">The index to read the byte from</param>
         /// <returns></returns>
-        public byte GetByte(int index)
+        public byte ReadByte(ushort address)
         {
-            return Bytes[index];
+            return Bytes[address];
+        }
+
+        /// <summary>
+        /// Get a word byte from memory at index.
+        /// </summary>
+        /// <param name="index">The index to read the word from</param>
+        /// <returns></returns>
+        public ushort ReadWord(ushort address)
+        {
+            return (ushort)(ReadByte((ushort)(address + 1)) << 8 | ReadByte(address));
         }
 
         /// <summary>

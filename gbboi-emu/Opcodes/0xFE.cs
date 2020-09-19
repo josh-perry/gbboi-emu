@@ -18,12 +18,14 @@ namespace gbboi_emu.Opcodes
 
         public void Execute(Instruction instruction, ICpu cpu, IMemory memory)
         {
-            cpu.Registers.F.ZeroFlag = cpu.Registers.A.Value == instruction.N;
-            cpu.Registers.F.CarryFlag = cpu.Registers.A.Value < instruction.N;
+            var n = memory.ReadByte(cpu.Registers.PC.Value);
+
+            cpu.Registers.F.ZeroFlag = cpu.Registers.A.Value == n;
+            cpu.Registers.F.CarryFlag = cpu.Registers.A.Value < n;
             cpu.Registers.F.SubtractFlag = true;
             
             // TODO: ???
-            cpu.Registers.F.HalfCarryFlag = (((cpu.Registers.A.Value & 0xF) - (instruction.N & 0xF)) & 0x10) == 0x10;
+            cpu.Registers.F.HalfCarryFlag = (((cpu.Registers.A.Value & 0xF) - (n & 0xF)) & 0x10) == 0x10;
         }
     }
 }

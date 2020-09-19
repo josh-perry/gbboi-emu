@@ -17,7 +17,7 @@
 
         public void Execute(Instruction instruction, ICpu cpu, IMemory memory)
         {
-            cpu.Registers.PC.Value = instruction.NN;
+            cpu.Registers.PC.Value = memory.ReadWord((ushort)(cpu.Registers.PC.Value + 1));
         }
     }
 }

@@ -15,16 +15,15 @@ namespace gbboi_emu.Tests.OpCodes
             var gameboy = new GameBoy(cpu, memory, new MockCartridge());
             gameboy.PowerUp();
 
-            byte nn = 33;
-
             gameboy.Memory.Bytes[gameboy.Cpu.Registers.PC.Value] = 0xC3;
-            gameboy.Memory.Bytes[gameboy.Cpu.Registers.PC.Value + 1] = nn;
+            gameboy.Memory.Bytes[gameboy.Cpu.Registers.PC.Value + 1] = 0x34;
+            gameboy.Memory.Bytes[gameboy.Cpu.Registers.PC.Value + 2] = 0x12;
 
             // Act
             gameboy.Cpu.Cycle();
 
             // Assert
-            Assert.That(gameboy.Cpu.Registers.PC.Value == nn);
+            Assert.That(gameboy.Cpu.Registers.PC.Value == 0x1234);
         }
     }
 }

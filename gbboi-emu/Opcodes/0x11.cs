@@ -18,7 +18,7 @@ namespace gbboi_emu.Opcodes
 
         public void Execute(Instruction instruction, ICpu cpu, IMemory memory)
         {
-            cpu.Registers.DE.Value = instruction.NN;
+            cpu.Registers.DE.Value = memory.ReadWord(cpu.Registers.PC.Value);
         }
     }
 }

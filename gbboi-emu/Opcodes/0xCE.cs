@@ -19,15 +19,16 @@
 
         public void Execute(Instruction instruction, ICpu cpu, IMemory memory)
         {
+            var n = memory.ReadByte((ushort)(cpu.Registers.PC.Value + 1));
             var originalValue = cpu.Registers.A.Value;
 
-            cpu.Registers.A.Value = (byte) (cpu.Registers.A.Value + instruction.N);
+            cpu.Registers.A.Value = (byte) (cpu.Registers.A.Value + n);
 
             // Flags
             cpu.Registers.F.SubtractFlag = false;
-            cpu.Registers.F.CarryFlag = originalValue + instruction.N > byte.MaxValue;
+            cpu.Registers.F.CarryFlag = originalValue + n > byte.MaxValue;
             cpu.Registers.F.ZeroFlag = cpu.Registers.A.Value == 0;
-            cpu.Registers.F.HalfCarryFlag = (((originalValue & 0xF) + (instruction.N & 0xF)) & 0x10) == 0x10;
+            cpu.Registers.F.HalfCarryFlag = (((originalValue & 0xF) + (n & 0xF)) & 0x10) == 0x10;
         }
     }
 }

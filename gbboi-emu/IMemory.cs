@@ -6,7 +6,9 @@
 
         void Init(int length);
 
-        byte GetByte(int index);
+        byte ReadByte(ushort address);
+
+        ushort ReadWord(ushort address);
 
         void LoadMemoryBankFromFile(string filepath, int index);
     }

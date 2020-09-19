@@ -3,12 +3,12 @@ using System;
 namespace gbboi_emu.Opcodes
 {
     /// <summary>
-    /// LD
+    /// LD C,n
     /// </summary>
     [OneByteOpcode]
     public class _0x0E : IOpcode
     {
-        public string Mnemonic { get; set; } = "LD";
+        public string Mnemonic { get; set; } = "LD C,n";
 
         public ushort Length { get; set; } = 2;
 
@@ -18,7 +18,7 @@ namespace gbboi_emu.Opcodes
 
         public void Execute(Instruction instruction, ICpu cpu, IMemory memory)
         {
-            cpu.Registers.C.Value = (byte)instruction.N;
+            cpu.Registers.C.Value = (byte)memory.ReadByte(cpu.Registers.PC.Value);
         }
     }
 }

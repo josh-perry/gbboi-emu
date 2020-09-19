@@ -23,7 +23,7 @@ namespace gbboi_emu.Opcodes
                 return;
             }
 
-            cpu.Stack.Call(instruction.NN, cpu.Registers, memory);
+            cpu.Stack.Call(memory.ReadWord((ushort)(cpu.Registers.PC.Value)), cpu.Registers, memory);
         }
     }
 }
