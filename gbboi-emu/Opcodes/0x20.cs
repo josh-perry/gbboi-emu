@@ -23,8 +23,9 @@
                 return;
             }
 
-            cpu.Registers.PC.Value += memory.ReadByte(cpu.Registers.PC.Value);
-            IncrementProgramCounter = false;
+            var b = (sbyte)memory.ReadByte((ushort)(cpu.Registers.PC.Value + 1));
+            cpu.Registers.PC.Value += (ushort)b;
+            IncrementProgramCounter = true;
         }
     }
 }

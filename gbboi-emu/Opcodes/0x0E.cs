@@ -18,7 +18,7 @@ namespace gbboi_emu.Opcodes
 
         public void Execute(Instruction instruction, ICpu cpu, IMemory memory)
         {
-            cpu.Registers.C.Value = (byte)memory.ReadByte(cpu.Registers.PC.Value);
+            cpu.Registers.C.Value = memory.ReadByte((ushort)(cpu.Registers.PC.Value + 1));
         }
     }
 }
