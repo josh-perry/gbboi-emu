@@ -20,12 +20,12 @@ namespace gbboi_emu.Opcodes
         {
             var n = memory.Bytes[cpu.Registers.HL.Value];
 
-            cpu.Registers.F.ZeroFlag = cpu.Registers.A.Value == n;
-            cpu.Registers.F.CarryFlag = cpu.Registers.A.Value < n;
+            cpu.Registers.F.ZeroFlag = cpu.Registers.HL.Value == n;
+            cpu.Registers.F.CarryFlag = cpu.Registers.HL.Value < n;
             cpu.Registers.F.SubtractFlag = true;
             
             // TODO: ???
-            cpu.Registers.F.HalfCarryFlag = (((cpu.Registers.A.Value & 0xF) - (n & 0xF)) & 0x10) == 0x10;
+            cpu.Registers.F.HalfCarryFlag = (((cpu.Registers.HL.Value & 0xF) - (n & 0xF)) & 0x10) == 0x10;
         }
     }
 }

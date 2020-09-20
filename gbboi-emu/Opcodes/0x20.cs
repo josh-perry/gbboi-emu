@@ -23,7 +23,7 @@
                 return;
             }
 
-            var b = (sbyte)memory.ReadByte((ushort)(cpu.Registers.PC.Value + 1));
+            var b = (sbyte)cpu.ReadImmediateN();
             cpu.Registers.PC.Value += (ushort)b;
             IncrementProgramCounter = true;
         }
