@@ -14,7 +14,7 @@
 
         public bool IncrementProgramCounter { get; set; } = true;
 
-        public void Execute(Instruction instruction, ICpu cpu, IMemory memory)
+        public void Execute(Instruction instruction, ICpu cpu, IMmu mmu)
         {
             var mask = 1 << 7;
             cpu.Registers.F.ZeroFlag = (cpu.Registers.H.Value & mask) != mask;

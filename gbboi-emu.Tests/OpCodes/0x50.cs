@@ -10,16 +10,16 @@ namespace gbboi_emu.Tests.OpCodes
         public void Op0x5001_DisB()
         {
             // Arrange
-            var memory = new Memory();
-            var cpu = new Cpu(memory, new Registers());
-            var gameboy = new GameBoy(cpu, memory, new MockCartridge());
+            var mmu = new Mmu();
+            var cpu = new Cpu(mmu, new Registers());
+            var gameboy = new GameBoy(cpu, mmu, new MockCartridge());
 
-            gameboy.Memory.Init(0xFFFF);
+            //gameboy.Memory.Init(0xFFFF);
             gameboy.Cpu.Registers.PC.Value = 0x00;
             gameboy.Cpu.Registers.B.Value = 0xAA;
 
-            gameboy.Memory.Bytes[0x00] = 0x50;
-            gameboy.Memory.Bytes[0x01] = 0x01;
+            gameboy.Mmu.WriteByte(0x00, 0x50);
+            gameboy.Mmu.WriteByte(0x01, 0x01);
 
             // Act
             gameboy.Cpu.Cycle();

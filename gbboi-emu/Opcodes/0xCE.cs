@@ -17,9 +17,9 @@
 
         public bool IncrementProgramCounter { get; set; } = true;
 
-        public void Execute(Instruction instruction, ICpu cpu, IMemory memory)
+        public void Execute(Instruction instruction, ICpu cpu, IMmu mmu)
         {
-            var n = memory.ReadByte((ushort)(cpu.Registers.PC.Value + 1));
+            var n = mmu.ReadByte((ushort)(cpu.Registers.PC.Value + 1));
             var originalValue = cpu.Registers.A.Value;
 
             cpu.Registers.A.Value = (byte) (cpu.Registers.A.Value + n);

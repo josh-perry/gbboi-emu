@@ -15,9 +15,9 @@
 
         public bool IncrementProgramCounter { get; set; } = true;
 
-        public void Execute(Instruction instruction, ICpu cpu, IMemory memory)
+        public void Execute(Instruction instruction, ICpu cpu, IMmu mmu)
         {
-            cpu.Registers.HL.Value = memory.ReadWord((ushort)(cpu.Registers.PC.Value + 1));
+            cpu.Registers.HL.Value = mmu.ReadWord((ushort)(cpu.Registers.PC.Value + 1));
         }
     }
 }

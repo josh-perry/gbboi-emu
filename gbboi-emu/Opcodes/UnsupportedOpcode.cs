@@ -12,7 +12,7 @@ namespace gbboi_emu.Opcodes
 
         public bool IncrementProgramCounter { get; set; } = false;
 
-        public void Execute(Instruction instruction, ICpu cpu, IMemory memory)
+        public void Execute(Instruction instruction, ICpu cpu, IMmu mmu)
         {
             throw new OperationNotSupportedByCpuException(instruction.Opcode);
         }

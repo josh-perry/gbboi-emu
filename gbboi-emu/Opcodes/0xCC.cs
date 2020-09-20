@@ -18,7 +18,7 @@
 
         public bool IncrementProgramCounter { get; set; } = true;
 
-        public void Execute(Instruction instruction, ICpu cpu, IMemory memory)
+        public void Execute(Instruction instruction, ICpu cpu, IMmu mmu)
         {
             // Only call the routine if the zero flag is set
             if (!cpu.Registers.F.ZeroFlag)
@@ -27,7 +27,7 @@
                 return;
             }
 
-            cpu.Stack.Call(memory.ReadWord((ushort)(cpu.Registers.PC.Value + 1)), cpu.Registers, memory);
+            cpu.Stack.Call(mmu.ReadWord((ushort)(cpu.Registers.PC.Value + 1)), cpu.Registers, mmu);
             IncrementProgramCounter = false;
         }
     }

@@ -10,14 +10,14 @@ namespace gbboi_emu.Tests.OpCodes
         public void Op0xC3_JumpsToNN()
         {
             // Arrange
-            var memory = new Memory();
-            var cpu = new Cpu(memory, new Registers());
-            var gameboy = new GameBoy(cpu, memory, new MockCartridge());
+            var mmu = new Mmu();
+            var cpu = new Cpu(mmu, new Registers());
+            var gameboy = new GameBoy(cpu, mmu, new MockCartridge());
             gameboy.PowerUp();
 
-            gameboy.Memory.Bytes[gameboy.Cpu.Registers.PC.Value] = 0xC3;
-            gameboy.Memory.Bytes[gameboy.Cpu.Registers.PC.Value + 1] = 0x34;
-            gameboy.Memory.Bytes[gameboy.Cpu.Registers.PC.Value + 2] = 0x12;
+            gameboy.Mmu.WriteByte(gameboy.Cpu.Registers.PC.Value, 0xC3);
+            gameboy.Mmu.WriteByte((ushort)(gameboy.Cpu.Registers.PC.Value + 1), 0x34);
+            gameboy.Mmu.WriteByte((ushort)(gameboy.Cpu.Registers.PC.Value + 2), 0x12);
 
             // Act
             gameboy.Cpu.Cycle();

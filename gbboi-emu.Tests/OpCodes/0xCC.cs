@@ -11,17 +11,17 @@ namespace gbboi_emu.Tests.OpCodes
         public void Op0xCC_ZeroFlagIsSet_SPIsSetOldSPOnStack()
         {
             // Arrange
-            var memory = new Memory();
-            var cpu = new Cpu(memory, new Registers());
-            var gameboy = new GameBoy(cpu, memory, new MockCartridge());
+            var mmu = new Mmu();
+            var cpu = new Cpu(mmu, new Registers());
+            var gameboy = new GameBoy(cpu, mmu, new MockCartridge());
             gameboy.PowerUp();
 
             gameboy.Cpu.Registers.F.ZeroFlag = true;
             var originalPC = gameboy.Cpu.Registers.PC.Value;
             var originalSP = gameboy.Cpu.Registers.SP.Value;
 
-            gameboy.Memory.Bytes[gameboy.Cpu.Registers.PC.Value] = 0xCC;
-            gameboy.Memory.Bytes[gameboy.Cpu.Registers.PC.Value + 1] = 0x55;
+            gameboy.Mmu.WriteByte(gameboy.Cpu.Registers.PC.Value, 0xCC);
+            gameboy.Mmu.WriteByte((ushort)(gameboy.Cpu.Registers.PC.Value + 1), 0x55);
 
             // Act
             gameboy.Cpu.Cycle();
@@ -31,8 +31,8 @@ namespace gbboi_emu.Tests.OpCodes
             Assert.That(gameboy.Cpu.Registers.F.ZeroFlag);
 
             // Current item in the stack should be original PC
-            Assert.That(gameboy.Memory.Bytes[gameboy.Cpu.Registers.SP.Value] == (byte)(originalPC >> 8));
-            Assert.That(gameboy.Memory.Bytes[gameboy.Cpu.Registers.SP.Value + 1] == (byte)(originalPC & 0x00FF));
+            Assert.That(gameboy.Mmu.ReadByte(gameboy.Cpu.Registers.SP.Value) == (byte)(originalPC >> 8));
+            Assert.That(gameboy.Mmu.ReadByte((ushort)(gameboy.Cpu.Registers.SP.Value + 1)) == (byte)(originalPC & 0x00FF));
 
             // Stack pointer should have decremented
             Assert.That(gameboy.Cpu.Registers.SP.Value == originalSP);
@@ -45,17 +45,18 @@ namespace gbboi_emu.Tests.OpCodes
         public void Op0xCC_ZeroFlagIsNotSet_NoOp()
         {
             // Arrange
-            var memory = new Memory();
-            var cpu = new Cpu(memory, new Registers());
-            var gameboy = new GameBoy(cpu, memory, new MockCartridge());
+            var mmu = new Mmu();
+            var cpu = new Cpu(mmu, new Registers());
+            var gameboy = new GameBoy(cpu, mmu, new MockCartridge());
             gameboy.PowerUp();
 
             gameboy.Cpu.Registers.F.ZeroFlag = false;
             var originalPC = gameboy.Cpu.Registers.PC.Value;
             var originalSP = gameboy.Cpu.Registers.SP.Value;
 
-            gameboy.Memory.Bytes[gameboy.Cpu.Registers.PC.Value] = 0xCC;
-            gameboy.Memory.Bytes[gameboy.Cpu.Registers.PC.Value + 1] = 0x55;
+            gameboy.Mmu.BiosMapped = false;
+            gameboy.Mmu.WriteByte(gameboy.Cpu.Registers.PC.Value, 0xCC);
+            gameboy.Mmu.WriteByte((ushort)(gameboy.Cpu.Registers.PC.Value + 1), 0x55);
 
             // Act
             gameboy.Cpu.Cycle();

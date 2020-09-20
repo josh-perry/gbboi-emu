@@ -23,14 +23,14 @@ namespace gbboi_emu.Tests.OpCodes
         public void UnsupportedOpcode_ThrowsUnsupportedException(byte op)
         {
             // Arrange
-            var memory = new Memory();
-            var cpu = new Cpu(memory, new Registers());
-            var gameboy = new GameBoy(cpu, memory, new MockCartridge());
+            var mmu = new Mmu();
+            var cpu = new Cpu(mmu, new Registers());
+            var gameboy = new GameBoy(cpu, mmu, new MockCartridge());
             gameboy.PowerUp();
 
             gameboy.Cpu.Registers.PC.Value = 0x00;
-            gameboy.Memory.Bytes[0x00] = op;
-            gameboy.Memory.Bytes[0x01] = 0x00;
+            gameboy.Mmu.WriteByte(0x00, op);
+            gameboy.Mmu.WriteByte(0x01, 0x00);
 
             // Act
             // Assert

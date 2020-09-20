@@ -16,9 +16,10 @@ namespace gbboi_emu.Opcodes
 
         public bool IncrementProgramCounter { get; set; } = true;
 
-        public void Execute(Instruction instruction, ICpu cpu, IMemory memory)
+        public void Execute(Instruction instruction, ICpu cpu, IMmu mmu)
         {
-            memory.Bytes[0xFF00 + memory.ReadByte((ushort)(cpu.Registers.PC.Value + 1))] = cpu.Registers.A.Value;
+            var offset = mmu.ReadByte((ushort)(cpu.Registers.PC.Value + 1));
+            mmu.WriteByte((ushort)(0xFF00 + offset), cpu.Registers.A.Value);
         }
     }
 }

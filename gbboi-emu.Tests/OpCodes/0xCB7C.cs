@@ -10,9 +10,9 @@ namespace gbboi_emu.Tests.OpCodes
         public void Op0xCB7C_ZeroFlagSet()
         {
             // Arrange
-            var memory = new Memory();
-            var cpu = new Cpu(memory, new Registers());
-            var gameboy = new GameBoy(cpu, memory, new MockCartridge());
+            var mmu = new Mmu();
+            var cpu = new Cpu(mmu, new Registers());
+            var gameboy = new GameBoy(cpu, mmu, new MockCartridge());
             gameboy.PowerUp();
 
             gameboy.Cpu.Registers.H.Value = (0x00 | (1 << 7));
@@ -21,8 +21,8 @@ namespace gbboi_emu.Tests.OpCodes
             var originalSP = gameboy.Cpu.Registers.SP.Value;
             var originalCarry = gameboy.Cpu.Registers.F.CarryFlag;
 
-            gameboy.Memory.Bytes[gameboy.Cpu.Registers.PC.Value] = 0xCB;
-            gameboy.Memory.Bytes[gameboy.Cpu.Registers.PC.Value + 1] = 0x7C;
+            gameboy.Mmu.WriteByte(gameboy.Cpu.Registers.PC.Value, 0xCB);
+            gameboy.Mmu.WriteByte((ushort)(gameboy.Cpu.Registers.PC.Value + 1), 0x7C);
 
             // Act
             gameboy.Cpu.Cycle();
@@ -38,9 +38,9 @@ namespace gbboi_emu.Tests.OpCodes
         public void Op0xCB7C_ZeroFlagNotSet()
         {
             // Arrange
-            var memory = new Memory();
-            var cpu = new Cpu(memory, new Registers());
-            var gameboy = new GameBoy(cpu, memory, new MockCartridge());
+            var mmu = new Mmu();
+            var cpu = new Cpu(mmu, new Registers());
+            var gameboy = new GameBoy(cpu, mmu, new MockCartridge());
             gameboy.PowerUp();
 
             gameboy.Cpu.Registers.H.Value = 0x00;
@@ -49,8 +49,8 @@ namespace gbboi_emu.Tests.OpCodes
             var originalSP = gameboy.Cpu.Registers.SP.Value;
             var originalCarry = gameboy.Cpu.Registers.F.CarryFlag;
 
-            gameboy.Memory.Bytes[gameboy.Cpu.Registers.PC.Value] = 0xCB;
-            gameboy.Memory.Bytes[gameboy.Cpu.Registers.PC.Value + 1] = 0x7C;
+            gameboy.Mmu.WriteByte(gameboy.Cpu.Registers.PC.Value, 0xCB);
+            gameboy.Mmu.WriteByte((ushort)(gameboy.Cpu.Registers.PC.Value + 1), 0x7C);
 
             // Act
             gameboy.Cpu.Cycle();

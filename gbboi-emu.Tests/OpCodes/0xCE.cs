@@ -11,16 +11,16 @@ namespace gbboi_emu.Tests.OpCodes
         public void Op0xCE_1Plus2NoCarry()
         {
             // Arrange
-            var memory = new Memory();
-            var cpu = new Cpu(memory, new Registers());
-            var gameboy = new GameBoy(cpu, memory, new MockCartridge());
+            var mmu = new Mmu();
+            var cpu = new Cpu(mmu, new Registers());
+            var gameboy = new GameBoy(cpu, mmu, new MockCartridge());
             gameboy.PowerUp();
 
             gameboy.Cpu.Registers.A.Value = 0x01;
 
             gameboy.Cpu.Registers.PC.Value = 0x00;
-            gameboy.Memory.Bytes[0x00] = 0xCE;
-            gameboy.Memory.Bytes[0x01] = 0x02;
+            gameboy.Mmu.WriteByte(0x00, 0xCE);
+            gameboy.Mmu.WriteByte(0x01, 0x02);
 
             // Act
             gameboy.Cpu.Cycle();
@@ -36,16 +36,16 @@ namespace gbboi_emu.Tests.OpCodes
         public void Op0xCE_250Plus10Carry()
         {
             // Arrange
-            var memory = new Memory();
-            var cpu = new Cpu(memory, new Registers());
-            var gameboy = new GameBoy(cpu, memory, new MockCartridge());
+            var mmu = new Mmu();
+            var cpu = new Cpu(mmu, new Registers());
+            var gameboy = new GameBoy(cpu, mmu, new MockCartridge());
             gameboy.PowerUp();
 
             gameboy.Cpu.Registers.A.Value = 0xFA;
 
             gameboy.Cpu.Registers.PC.Value = 0x00;
-            gameboy.Memory.Bytes[0x00] = 0xCE;
-            gameboy.Memory.Bytes[0x01] = 0x0A;
+            gameboy.Mmu.WriteByte(0x00, 0xCE);
+            gameboy.Mmu.WriteByte(0x01, 0x0A);
 
             // Act
             gameboy.Cpu.Cycle();
@@ -61,16 +61,16 @@ namespace gbboi_emu.Tests.OpCodes
         public void Op0xCE_250Plus6CarryZero()
         {
             // Arrange
-            var memory = new Memory();
-            var cpu = new Cpu(memory, new Registers());
-            var gameboy = new GameBoy(cpu, memory, new MockCartridge());
+            var mmu = new Mmu();
+            var cpu = new Cpu(mmu, new Registers());
+            var gameboy = new GameBoy(cpu, mmu, new MockCartridge());
             gameboy.PowerUp();
 
             gameboy.Cpu.Registers.A.Value = 0xFA;
 
             gameboy.Cpu.Registers.PC.Value = 0x00;
-            gameboy.Memory.Bytes[0x00] = 0xCE;
-            gameboy.Memory.Bytes[0x01] = 0x06;
+            gameboy.Mmu.WriteByte(0x00, 0xCE);
+            gameboy.Mmu.WriteByte(0x01, 0x06);
 
             // Act
             gameboy.Cpu.Cycle();
@@ -86,16 +86,16 @@ namespace gbboi_emu.Tests.OpCodes
         public void Op0xCE_10Plus12HalfCarry()
         {
             // Arrange
-            var memory = new Memory();
-            var cpu = new Cpu(memory, new Registers());
-            var gameboy = new GameBoy(cpu, memory, new MockCartridge());
+            var mmu = new Mmu();
+            var cpu = new Cpu(mmu, new Registers());
+            var gameboy = new GameBoy(cpu, mmu, new MockCartridge());
             gameboy.PowerUp();
 
             gameboy.Cpu.Registers.A.Value = 0x0A;
 
             gameboy.Cpu.Registers.PC.Value = 0x00;
-            gameboy.Memory.Bytes[0x00] = 0xCE;
-            gameboy.Memory.Bytes[0x01] = 0x0C;
+            gameboy.Mmu.WriteByte(0x00, 0xCE);
+            gameboy.Mmu.WriteByte(0x01, 0x0C);
 
             // Act
             gameboy.Cpu.Cycle();
@@ -112,16 +112,16 @@ namespace gbboi_emu.Tests.OpCodes
         public void Op0xCE_5Plus4HalfCarry()
         {
             // Arrange
-            var memory = new Memory();
-            var cpu = new Cpu(memory, new Registers());
-            var gameboy = new GameBoy(cpu, memory, new MockCartridge());
+            var mmu = new Mmu();
+            var cpu = new Cpu(mmu, new Registers());
+            var gameboy = new GameBoy(cpu, mmu, new MockCartridge());
             gameboy.PowerUp();
 
             gameboy.Cpu.Registers.A.Value = 0x05;
 
             gameboy.Cpu.Registers.PC.Value = 0x00;
-            gameboy.Memory.Bytes[0x00] = 0xCE;
-            gameboy.Memory.Bytes[0x01] = 0x04;
+            gameboy.Mmu.WriteByte(0x00, 0xCE);
+            gameboy.Mmu.WriteByte(0x01, 0x04);
 
             // Act
             gameboy.Cpu.Cycle();

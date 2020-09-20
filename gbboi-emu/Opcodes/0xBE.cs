@@ -16,9 +16,9 @@ namespace gbboi_emu.Opcodes
 
         public bool IncrementProgramCounter { get; set; } = true;
 
-        public void Execute(Instruction instruction, ICpu cpu, IMemory memory)
+        public void Execute(Instruction instruction, ICpu cpu, IMmu mmu)
         {
-            var n = memory.Bytes[cpu.Registers.HL.Value];
+            var n = mmu.ReadByte(cpu.Registers.HL.Value);
 
             cpu.Registers.F.ZeroFlag = cpu.Registers.HL.Value == n;
             cpu.Registers.F.CarryFlag = cpu.Registers.HL.Value < n;

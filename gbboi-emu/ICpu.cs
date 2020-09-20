@@ -2,7 +2,7 @@
 {
     public interface ICpu
     {
-        IMemory Memory { get; set; }
+        IMmu Mmu { get; set; }
 
         Instruction CurrentInstruction { get; set; }
 

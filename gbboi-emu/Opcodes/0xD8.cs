@@ -16,11 +16,11 @@ namespace gbboi_emu.Opcodes
 
         public bool IncrementProgramCounter { get; set; } = true;
 
-        public void Execute(Instruction instruction, ICpu cpu, IMemory memory)
+        public void Execute(Instruction instruction, ICpu cpu, IMmu mmu)
         {
             if (!cpu.Registers.F.CarryFlag) return;
 
-            cpu.Stack.Return(cpu.Registers, memory);
+            cpu.Stack.Return(cpu.Registers, mmu);
         }
     }
 }

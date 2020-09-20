@@ -10,6 +10,8 @@
 
         ushort ReadWord(ushort address);
 
+        void WriteByte(ushort address, byte value);
+
         void LoadMemoryBankFromFile(string filepath, int index);
     }
 }

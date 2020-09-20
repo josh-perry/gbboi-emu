@@ -6,7 +6,7 @@ namespace gbboi_emu
 {
     public class Cpu : ICpu
     {
-        public IMemory Memory { get; set; }
+        public IMmu Mmu { get; set; }
 
         public Registers Registers { get; set; }
 
@@ -20,10 +20,10 @@ namespace gbboi_emu
 
         public bool InterruptsEnabled { get; set; }
         
-        public Cpu(IMemory memory, Registers registers)
+        public Cpu(IMmu mmu, Registers registers)
         {
             InterruptsEnabled = false;
-            Memory = memory;
+            Mmu = mmu;
             Registers = registers;
             Stack = new Stack();
             OpExecutor = new OpExecutor();
@@ -31,7 +31,7 @@ namespace gbboi_emu
 
         public void FetchInstruction()
         {
-            var op = (ushort) ((Memory.Bytes[Registers.PC.Value] << 8) | Memory.Bytes[Registers.PC.Value + 1]);
+            var op = (ushort)((Mmu.ReadByte(Registers.PC.Value) << 8) | Mmu.ReadByte((ushort)(Registers.PC.Value + 1)));
             CurrentInstruction = new Instruction(op);
         }
 
@@ -54,13 +54,14 @@ namespace gbboi_emu
             }
 
             WriteStatus();
-            CurrentOpcode.Execute(CurrentInstruction, this, Memory);
+            CurrentOpcode.Execute(CurrentInstruction, this, Mmu);
         }
 
         private void WriteStatus()
         {
             var pc = Registers.PC.Value.ToString("x8");
             Console.WriteLine($"{pc}\t{CurrentInstruction.Opcode.ToString("X2")}\t{CurrentOpcode.Mnemonic}");
+
             //var r = Registers;
             //Console.WriteLine($"A={r.A}\tF={r.F}\tB={r.B}\tC={r.C}\tD={r.D}\tE={r.E}\tH={r.H}\tL={r.L}");
         }
@@ -74,12 +75,12 @@ namespace gbboi_emu
 
         public byte ReadImmediateN()
         {
-            return Memory.ReadByte((ushort)(Registers.PC.Value + 1));
+            return Mmu.ReadByte((ushort)(Registers.PC.Value + 1));
         }
         
         public ushort ReadImmediateNN()
         {
-            return Memory.ReadWord((ushort)(Registers.PC.Value + 1));
+            return Mmu.ReadWord((ushort)(Registers.PC.Value + 1));
         }
         
         private void IncrementProgramCounter()

@@ -42,6 +42,16 @@ namespace gbboi_emu
         }
 
         /// <summary>
+        /// Write byte to address.
+        /// </summary>
+        /// <param name="index">The index to write the byte to</param>
+        /// <returns></returns>
+        public void WriteByte(ushort address, byte value)
+        {
+            Bytes[address] = value;
+        }
+
+        /// <summary>
         /// Copies data from a file into memory at index
         /// </summary>
         /// <param name="filepath">The path to load data from</param>

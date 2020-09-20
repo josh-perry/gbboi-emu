@@ -10,15 +10,15 @@ namespace gbboi_emu.Tests.OpCodes
         public void Op0x01_NNIsLoadedIntoRegisterBC()
         {
             // Arrange
-            var memory = new Memory();
-            var cpu = new Cpu(memory, new Registers());
-            var gameboy = new GameBoy(cpu, memory, new MockCartridge());
+            var mmu = new Mmu();
+            var cpu = new Cpu(mmu, new Registers());
+            var gameboy = new GameBoy(cpu, mmu, new MockCartridge());
             gameboy.PowerUp();
 
             const byte nn = 12;
 
-            gameboy.Memory.Bytes[gameboy.Cpu.Registers.PC.Value] = 0x01;
-            gameboy.Memory.Bytes[gameboy.Cpu.Registers.PC.Value + 1] = nn;
+            gameboy.Mmu.WriteByte(gameboy.Cpu.Registers.PC.Value, 0x01);
+            gameboy.Mmu.WriteByte((ushort)(gameboy.Cpu.Registers.PC.Value + 1), nn);
 
             // Act
             gameboy.Cpu.Cycle();

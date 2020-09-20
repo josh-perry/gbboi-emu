@@ -10,14 +10,13 @@ namespace gbboi_emu.Tests.OpCodes
         public void Op0x31FE_SpIs0xFE()
         {
             // Arrange
-            var memory = new Memory();
-            var cpu = new Cpu(memory, new Registers());
-            var gameboy = new GameBoy(cpu, memory, new MockCartridge());
+            var mmu = new Mmu();
+            var cpu = new Cpu(mmu, new Registers());
+            var gameboy = new GameBoy(cpu, mmu, new MockCartridge());
 
-            gameboy.Memory.Init(0xFFFF);
             gameboy.Cpu.Registers.PC.Value = 0x00;
-            gameboy.Memory.Bytes[0x00] = 0x31;
-            gameboy.Memory.Bytes[0x01] = 0xFE;
+            gameboy.Mmu.WriteByte(0x00, 0x31);
+            gameboy.Mmu.WriteByte(0x01, 0xFE);
 
             // Act
             gameboy.Cpu.Cycle();
@@ -30,14 +29,13 @@ namespace gbboi_emu.Tests.OpCodes
         public void Op0x3111_SpIs0x11()
         {
             // Arrange
-            var memory = new Memory();
-            var cpu = new Cpu(memory, new Registers());
-            var gameboy = new GameBoy(cpu, memory, new MockCartridge());
+            var mmu = new Mmu();
+            var cpu = new Cpu(mmu, new Registers());
+            var gameboy = new GameBoy(cpu, mmu, new MockCartridge());
 
-            gameboy.Memory.Init(0xFFFF);
             gameboy.Cpu.Registers.PC.Value = 0x00;
-            gameboy.Memory.Bytes[0x00] = 0x31;
-            gameboy.Memory.Bytes[0x01] = 0x11;
+            gameboy.Mmu.WriteByte(0x00, 0x31);
+            gameboy.Mmu.WriteByte(0x01, 0x11);
 
             // Act
             gameboy.Cpu.Cycle();
