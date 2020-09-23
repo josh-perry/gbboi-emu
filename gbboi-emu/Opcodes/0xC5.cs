@@ -3,13 +3,12 @@ using System;
 namespace gbboi_emu.Opcodes
 {
     /// <summary>
-    /// PUSH
-    ///
+    /// PUSH BC
     /// </summary>
     [OneByteOpcode]
     public class _0xC5 : IOpcode
     {
-        public string Mnemonic { get; set; } = "PUSH";
+        public string Mnemonic { get; set; } = "PUSH BC";
 
         public ushort Length { get; set; } = 1;
 
@@ -19,7 +18,7 @@ namespace gbboi_emu.Opcodes
 
         public void Execute(Instruction instruction, ICpu cpu, IMmu mmu)
         {
-            throw new NotImplementedException(Mnemonic);
+            cpu.Stack.Push(cpu.Registers.BC.Value, cpu.Registers, mmu);
         }
     }
 }
