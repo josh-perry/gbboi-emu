@@ -18,7 +18,7 @@ namespace gbboi_emu.Opcodes
 
         public void Execute(Instruction instruction, ICpu cpu, IMmu mmu)
         {
-            cpu.Registers.A.Value = (byte)mmu.ReadByte(cpu.Registers.PC.Value);
+            cpu.Registers.A.Value = cpu.ReadImmediateN();
         }
     }
 }

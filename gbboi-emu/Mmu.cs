@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 
 namespace gbboi_emu
@@ -12,6 +13,8 @@ namespace gbboi_emu
 
         void WriteByte(ushort address, byte value);
 
+        void WriteWord(ushort address, ushort value);
+
         void Initialize(ICartridge cartridge);
     }
 
@@ -21,6 +24,10 @@ namespace gbboi_emu
 
         public IMemory Rom;
 
+        public IMemory ZeroPage;
+
+        public IMemory MemoryMappedIo;
+
         public bool BiosMapped { get; set; }
 
         public Mmu()
@@ -29,29 +36,109 @@ namespace gbboi_emu
             Bios.Init(256);
 
             Rom = new Memory();
-            Rom.Init(32*1024);
+            Rom.Init(0x800000);
+
+            ZeroPage = new Memory();
+            ZeroPage.Init(0x7F + 1);
+
+            MemoryMappedIo = new Memory();
+            MemoryMappedIo.Init(0x7F + 1);
 
             BiosMapped = true;
         }
 
         public byte ReadByte(ushort address)
         {
-            switch(address & 0xF000)
+            switch (address & 0xF000)
             {
+                // BIOS (256b)/ROM0
                 case 0x0000:
-                    if(BiosMapped)
+                    if (BiosMapped)
                     {
                         if (address < 0x0100)
-                        {
                             return Bios.ReadByte(address);
-                        }
+                        //else if (Z80._r.pc == 0x0100)
+                        //    MMU._inbios = 0;
                     }
 
                     return Rom.ReadByte(address);
+
                 case 0x1000:
                 case 0x2000:
                 case 0x3000:
+                    return Bios.ReadByte(address);
+
+                // ROM1 (unbanked) (16k)
+                case 0x4000:
+                case 0x5000:
+                case 0x6000:
+                case 0x7000:
                     return Rom.ReadByte(address);
+
+                // Graphics: VRAM (8k)
+                case 0x8000:
+                case 0x9000:
+                //return GPU._vram[addr & 0x1FFF];
+
+                // External RAM (8k)
+                case 0xA000:
+                case 0xB000:
+                //return MMU._eram[addr & 0x1FFF];
+
+                // Working RAM (8k)
+                case 0xC000:
+                case 0xD000:
+                //return MMU._wram[addr & 0x1FFF];
+
+                // Working RAM shadow
+                case 0xE000:
+                    //return MMU._wram[addr & 0x1FFF];
+                    return 0xFF;
+
+                // Working RAM shadow, I/O, Zero-page RAM
+                case 0xF000:
+                    switch (address & 0x0F00)
+                    {
+                        // Working RAM shadow
+                        case 0x000:
+                        case 0x100:
+                        case 0x200:
+                        case 0x300:
+                        case 0x400:
+                        case 0x500:
+                        case 0x600:
+                        case 0x700:
+                        case 0x800:
+                        case 0x900:
+                        case 0xA00:
+                        case 0xB00:
+                        case 0xC00:
+                        case 0xD00:
+                            //return MMU._wram[addr & 0x1FFF];
+
+                        // Graphics: object attribute memory
+                        // OAM is 160 bytes, remaining bytes read as 0
+                        case 0xE00:
+                            //if (address < 0xFEA0)
+                            //return GPU._oam[address & 0xFF];
+                            //else
+                            //return 0;
+                            return 0xFF;
+
+                        // Zero-page
+                        case 0xF00:
+                            if (address >= 0xFF80)
+                            {
+                                return ZeroPage.ReadByte((ushort)(address & 0x7F));
+                            }
+                            else
+                            {
+                                return MemoryMappedIo.ReadByte((ushort)(address & 0x7F));
+                            }
+                        default:
+                            return 0xFF;
+                    }
+
                 default:
                     return 0xFF;
             }
@@ -62,26 +149,108 @@ namespace gbboi_emu
             return (ushort)(ReadByte((ushort)(address + 1)) << 8 | ReadByte(address));
         }
 
+        public void WriteWord(ushort address, ushort value)
+        {
+            throw new NotImplementedException();
+        }
+
         public void WriteByte(ushort address, byte value)
         {
-            switch(address & 0xF000)
+            switch (address & 0xF000)
             {
+                // BIOS (256b)/ROM0
                 case 0x0000:
-                    if(BiosMapped)
+                    if (BiosMapped)
                     {
                         if (address < 0x0100)
-                        {
                             Bios.WriteByte(address, value);
-                        }
+                        //else if (Z80._r.pc == 0x0100)
+                        //    MMU._inbios = 0;
                     }
 
                     Rom.WriteByte(address, value);
                     return;
+
                 case 0x1000:
                 case 0x2000:
                 case 0x3000:
                     Rom.WriteByte(address, value);
                     return;
+
+                // ROM1 (unbanked) (16k)
+                case 0x4000:
+                case 0x5000:
+                case 0x6000:
+                case 0x7000:
+                    Rom.WriteByte(address, value);
+                    return;
+
+                // Graphics: VRAM (8k)
+                case 0x8000:
+                case 0x9000:
+                //return GPU._vram[addr & 0x1FFF];
+
+                // External RAM (8k)
+                case 0xA000:
+                case 0xB000:
+                //return MMU._eram[addr & 0x1FFF];
+
+                // Working RAM (8k)
+                case 0xC000:
+                case 0xD000:
+                //return MMU._wram[addr & 0x1FFF];
+
+                // Working RAM shadow
+                case 0xE000:
+                    //return MMU._wram[addr & 0x1FFF];
+                    return;
+
+                // Working RAM shadow, I/O, Zero-page RAM
+                case 0xF000:
+                    switch (address & 0x0F00)
+                    {
+                        // Working RAM shadow
+                        case 0x000:
+                        case 0x100:
+                        case 0x200:
+                        case 0x300:
+                        case 0x400:
+                        case 0x500:
+                        case 0x600:
+                        case 0x700:
+                        case 0x800:
+                        case 0x900:
+                        case 0xA00:
+                        case 0xB00:
+                        case 0xC00:
+                        case 0xD00:
+                            //return MMU._wram[addr & 0x1FFF];
+
+                        // Graphics: object attribute memory
+                        // OAM is 160 bytes, remaining bytes read as 0
+                        case 0xE00:
+                            //if (address < 0xFEA0)
+                            //return GPU._oam[address & 0xFF];
+                            //else
+                            //return 0;
+                            return;
+
+                        // Zero-page
+                        case 0xF00:
+                            if (address >= 0xFF80)
+                            {
+                                ZeroPage.WriteByte((ushort)(address & 0x7F), value);
+                                return;
+                            }
+                            else
+                            {
+                                MemoryMappedIo.WriteByte((ushort)(address & 0x7F), value);
+                            }
+
+                            return;
+                        default:
+                            return;
+                    }
                 default:
                     return;
             }
@@ -93,7 +262,7 @@ namespace gbboi_emu
             InitializeCartridge(cartridge);
             InitializeMemory();
         }
-        
+
         private void InitializeBootloader()
         {
             var bytes = File.ReadAllBytes(@"TestData/BIOS.gb");

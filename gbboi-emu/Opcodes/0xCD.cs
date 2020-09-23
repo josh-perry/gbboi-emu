@@ -18,12 +18,8 @@ namespace gbboi_emu.Opcodes
 
         public void Execute(Instruction instruction, ICpu cpu, IMmu mmu)
         {
-            if(!cpu.Registers.F.ZeroFlag)
-            {
-                return;
-            }
-
-            cpu.Stack.Call(mmu.ReadWord((ushort)(cpu.Registers.PC.Value)), cpu.Registers, mmu);
+            var nn = cpu.ReadImmediateNN();
+            cpu.Stack.Call(nn, cpu.Registers, mmu);
         }
     }
 }

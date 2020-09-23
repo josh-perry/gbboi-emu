@@ -9,7 +9,6 @@
             //registers.SP.Value -= 2;
 
             // Add current PC to the stack
-            // TODO: Write mmu.WriteWord
             mmu.WriteByte(registers.SP.Value, registers.PC.Registers[0].Value);
             mmu.WriteByte((ushort)(registers.SP.Value + 1), registers.PC.Registers[1].Value);
 

@@ -19,7 +19,7 @@
 
         public void Execute(Instruction instruction, ICpu cpu, IMmu mmu)
         {
-            var n = mmu.ReadByte((ushort)(cpu.Registers.PC.Value + 1));
+            var n = cpu.ReadImmediateN();
             var originalValue = cpu.Registers.A.Value;
 
             cpu.Registers.A.Value = (byte) (cpu.Registers.A.Value + n);

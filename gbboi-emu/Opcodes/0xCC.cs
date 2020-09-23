@@ -27,7 +27,7 @@
                 return;
             }
 
-            cpu.Stack.Call(mmu.ReadWord((ushort)(cpu.Registers.PC.Value + 1)), cpu.Registers, mmu);
+            cpu.Stack.Call(cpu.ReadImmediateNN(), cpu.Registers, mmu);
             IncrementProgramCounter = false;
         }
     }

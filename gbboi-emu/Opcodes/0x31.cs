@@ -17,7 +17,7 @@
 
         public void Execute(Instruction instruction, ICpu cpu, IMmu mmu)
         {
-            cpu.Registers.SP.Value = mmu.ReadWord((ushort)(cpu.Registers.PC.Value + 1));
+            cpu.Registers.SP.Value = cpu.ReadImmediateNN();
         }
     }
 }
